@@ -1,0 +1,227 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\source.code\\darkclouds2357\\infrastructure\\src\\dotnet-core\\infrastructure\\lib\\Alidu.Core.MessageBus.RabbitMQ\\Alidu.Core.MessageBus.RabbitMQ.csproj": {}
+  },
+  "projects": {
+    "D:\\source.code\\darkclouds2357\\infrastructure\\src\\dotnet-core\\infrastructure\\lib\\Alidu.Core.Common\\Alidu.Core.Common.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\source.code\\darkclouds2357\\infrastructure\\src\\dotnet-core\\infrastructure\\lib\\Alidu.Core.Common\\Alidu.Core.Common.csproj",
+        "projectName": "Alidu.Core.Common",
+        "projectPath": "D:\\source.code\\darkclouds2357\\infrastructure\\src\\dotnet-core\\infrastructure\\lib\\Alidu.Core.Common\\Alidu.Core.Common.csproj",
+        "packagesPath": "C:\\Users\\7559\\.nuget\\packages\\",
+        "outputPath": "D:\\source.code\\darkclouds2357\\infrastructure\\src\\dotnet-core\\infrastructure\\lib\\Alidu.Core.Common\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\7559\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "dependencies": {
+            "Microsoft.AspNetCore.Http.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\source.code\\darkclouds2357\\infrastructure\\src\\dotnet-core\\infrastructure\\lib\\Alidu.Core.MessageBus.RabbitMQ\\Alidu.Core.MessageBus.RabbitMQ.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\source.code\\darkclouds2357\\infrastructure\\src\\dotnet-core\\infrastructure\\lib\\Alidu.Core.MessageBus.RabbitMQ\\Alidu.Core.MessageBus.RabbitMQ.csproj",
+        "projectName": "Alidu.Core.MessageBus.RabbitMQ",
+        "projectPath": "D:\\source.code\\darkclouds2357\\infrastructure\\src\\dotnet-core\\infrastructure\\lib\\Alidu.Core.MessageBus.RabbitMQ\\Alidu.Core.MessageBus.RabbitMQ.csproj",
+        "packagesPath": "C:\\Users\\7559\\.nuget\\packages\\",
+        "outputPath": "D:\\source.code\\darkclouds2357\\infrastructure\\src\\dotnet-core\\infrastructure\\lib\\Alidu.Core.MessageBus.RabbitMQ\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\7559\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "projectReferences": {
+              "D:\\source.code\\darkclouds2357\\infrastructure\\src\\dotnet-core\\infrastructure\\lib\\Alidu.Core.MessageBus\\Alidu.Core.MessageBus.csproj": {
+                "projectPath": "D:\\source.code\\darkclouds2357\\infrastructure\\src\\dotnet-core\\infrastructure\\lib\\Alidu.Core.MessageBus\\Alidu.Core.MessageBus.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "dependencies": {
+            "Microsoft.Extensions.Logging.Abstractions": {
+              "target": "Package",
+              "version": "[3.1.7, )"
+            },
+            "Polly": {
+              "target": "Package",
+              "version": "[7.2.1, )"
+            },
+            "RabbitMQ.Client": {
+              "target": "Package",
+              "version": "[6.1.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\source.code\\darkclouds2357\\infrastructure\\src\\dotnet-core\\infrastructure\\lib\\Alidu.Core.MessageBus\\Alidu.Core.MessageBus.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\source.code\\darkclouds2357\\infrastructure\\src\\dotnet-core\\infrastructure\\lib\\Alidu.Core.MessageBus\\Alidu.Core.MessageBus.csproj",
+        "projectName": "Alidu.Core.MessageBus",
+        "projectPath": "D:\\source.code\\darkclouds2357\\infrastructure\\src\\dotnet-core\\infrastructure\\lib\\Alidu.Core.MessageBus\\Alidu.Core.MessageBus.csproj",
+        "packagesPath": "C:\\Users\\7559\\.nuget\\packages\\",
+        "outputPath": "D:\\source.code\\darkclouds2357\\infrastructure\\src\\dotnet-core\\infrastructure\\lib\\Alidu.Core.MessageBus\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\7559\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "projectReferences": {
+              "D:\\source.code\\darkclouds2357\\infrastructure\\src\\dotnet-core\\infrastructure\\lib\\Alidu.Core.Common\\Alidu.Core.Common.csproj": {
+                "projectPath": "D:\\source.code\\darkclouds2357\\infrastructure\\src\\dotnet-core\\infrastructure\\lib\\Alidu.Core.Common\\Alidu.Core.Common.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "dependencies": {
+            "Microsoft.CSharp": {
+              "target": "Package",
+              "version": "[4.7.0, )"
+            },
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[3.1.7, )"
+            },
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[3.1.7, )"
+            },
+            "Microsoft.Extensions.Options": {
+              "target": "Package",
+              "version": "[3.1.7, )"
+            },
+            "Microsoft.Extensions.Options.ConfigurationExtensions": {
+              "target": "Package",
+              "version": "[3.1.7, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

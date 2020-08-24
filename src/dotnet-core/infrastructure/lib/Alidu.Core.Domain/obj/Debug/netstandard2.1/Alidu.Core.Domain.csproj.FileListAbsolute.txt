@@ -1,0 +1,12 @@
+D:\source.code\darkclouds2357\infrastructure\src\dotnet-core\infrastructure\lib\Alidu.Core.Domain\bin\Debug\netstandard2.1\Alidu.Core.Domain.deps.json
+D:\source.code\darkclouds2357\infrastructure\src\dotnet-core\infrastructure\lib\Alidu.Core.Domain\bin\Debug\netstandard2.1\Alidu.Core.Domain.dll
+D:\source.code\darkclouds2357\infrastructure\src\dotnet-core\infrastructure\lib\Alidu.Core.Domain\bin\Debug\netstandard2.1\Alidu.Core.Common.dll
+D:\source.code\darkclouds2357\infrastructure\src\dotnet-core\infrastructure\lib\Alidu.Core.Domain\bin\Debug\netstandard2.1\Alidu.Core.Common.pdb
+D:\source.code\darkclouds2357\infrastructure\src\dotnet-core\infrastructure\lib\Alidu.Core.Domain\obj\Debug\netstandard2.1\Alidu.Core.Domain.csprojAssemblyReference.cache
+D:\source.code\darkclouds2357\infrastructure\src\dotnet-core\infrastructure\lib\Alidu.Core.Domain\obj\Debug\netstandard2.1\Alidu.Core.Domain.AssemblyInfoInputs.cache
+D:\source.code\darkclouds2357\infrastructure\src\dotnet-core\infrastructure\lib\Alidu.Core.Domain\obj\Debug\netstandard2.1\Alidu.Core.Domain.AssemblyInfo.cs
+D:\source.code\darkclouds2357\infrastructure\src\dotnet-core\infrastructure\lib\Alidu.Core.Domain\obj\Debug\netstandard2.1\Alidu.Core.Domain.csproj.CopyComplete
+D:\source.code\darkclouds2357\infrastructure\src\dotnet-core\infrastructure\lib\Alidu.Core.Domain\obj\Debug\netstandard2.1\Alidu.Core.Domain.csproj.CoreCompileInputs.cache
+D:\source.code\darkclouds2357\infrastructure\src\dotnet-core\infrastructure\lib\Alidu.Core.Domain\bin\Debug\netstandard2.1\Alidu.Core.Domain.pdb
+D:\source.code\darkclouds2357\infrastructure\src\dotnet-core\infrastructure\lib\Alidu.Core.Domain\obj\Debug\netstandard2.1\Alidu.Core.Domain.dll
+D:\source.code\darkclouds2357\infrastructure\src\dotnet-core\infrastructure\lib\Alidu.Core.Domain\obj\Debug\netstandard2.1\Alidu.Core.Domain.pdb
