@@ -1,9 +1,0 @@
-D:\source.code\darkclouds2357\infrastructure\src\dotnet-core\infrastructure\lib\Alidu.Core.Common\bin\Debug\netstandard2.1\Alidu.Core.Common.deps.json
-D:\source.code\darkclouds2357\infrastructure\src\dotnet-core\infrastructure\lib\Alidu.Core.Common\bin\Debug\netstandard2.1\Alidu.Core.Common.dll
-D:\source.code\darkclouds2357\infrastructure\src\dotnet-core\infrastructure\lib\Alidu.Core.Common\bin\Debug\netstandard2.1\Alidu.Core.Common.pdb
-D:\source.code\darkclouds2357\infrastructure\src\dotnet-core\infrastructure\lib\Alidu.Core.Common\obj\Debug\netstandard2.1\Alidu.Core.Common.csprojAssemblyReference.cache
-D:\source.code\darkclouds2357\infrastructure\src\dotnet-core\infrastructure\lib\Alidu.Core.Common\obj\Debug\netstandard2.1\Alidu.Core.Common.AssemblyInfoInputs.cache
-D:\source.code\darkclouds2357\infrastructure\src\dotnet-core\infrastructure\lib\Alidu.Core.Common\obj\Debug\netstandard2.1\Alidu.Core.Common.AssemblyInfo.cs
-D:\source.code\darkclouds2357\infrastructure\src\dotnet-core\infrastructure\lib\Alidu.Core.Common\obj\Debug\netstandard2.1\Alidu.Core.Common.dll
-D:\source.code\darkclouds2357\infrastructure\src\dotnet-core\infrastructure\lib\Alidu.Core.Common\obj\Debug\netstandard2.1\Alidu.Core.Common.pdb
-D:\source.code\darkclouds2357\infrastructure\src\dotnet-core\infrastructure\lib\Alidu.Core.Common\obj\Debug\netstandard2.1\Alidu.Core.Common.csproj.CoreCompileInputs.cache
