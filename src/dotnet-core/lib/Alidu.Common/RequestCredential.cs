@@ -18,6 +18,8 @@ namespace Alidu.Common
 
         public string OrgId => throw new NotImplementedException();
 
+        public string WorkingOrgId => throw new NotImplementedException();
+
         public void SetClaims(string claims)
         {
         }

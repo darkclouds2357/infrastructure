@@ -116,13 +116,14 @@ namespace Alidu.Core.EFCore
         {
             var ownerId = GetLoggedinOwnerId();
             var orgId = GetLoggedinOrgId();
+            var workingOrgId = GetLoggedinWorkingOrgId();
 
             var entries = ChangeTracker.Entries();
             foreach (var entry in entries)
             {
+                var now = DateTime.UtcNow;
                 if (entry.Entity is ITrackable trackable)
                 {
-                    var now = DateTime.UtcNow;
                     switch (entry.State)
                     {
                         case EntityState.Modified:
@@ -136,8 +137,12 @@ namespace Alidu.Core.EFCore
                 }
                 if (entry.Entity is ISimpleTrackable simpleTrackableEntity && entry.State == EntityState.Added)
                 {
-                    var now = DateTime.UtcNow;
                     simpleTrackableEntity.Created(orgId, now, ownerId);
+                }
+
+                if (entry.Entity is EntityBase entityBase && string.IsNullOrWhiteSpace(entityBase.WorkingOrgId))
+                {
+                    entityBase.SetWorkingOrgId(workingOrgId);
                 }
             }
         }
@@ -145,5 +150,6 @@ namespace Alidu.Core.EFCore
         private string GetLoggedinOrgId() => _requestCredential.OrgId;
 
         private string GetLoggedinOwnerId() => _requestCredential.OwnerId;
+        private string GetLoggedinWorkingOrgId() => _requestCredential.WorkingOrgId;
     }
 }
