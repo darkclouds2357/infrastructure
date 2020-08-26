@@ -1,6 +1,6 @@
 ﻿namespace Alidu.Common.Interfaces
 {
-    public interface IRequestChannel
+    public interface IHeaderChannel
     {
         void SetChannel(string requestChannel);
     }

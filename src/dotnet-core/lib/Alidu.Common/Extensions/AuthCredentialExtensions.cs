@@ -7,38 +7,30 @@ namespace Alidu.Common
 {
     public static class AuthCredentialExtensions
     {
-        public static IRequestCredential GetRequestClaim(this HttpContext context)
+
+        public static IRequestHeader GetRequestHeader(this HttpContext context)
         {
             var requestHeaders = context.Request.Headers;
-            if (!requestHeaders.ContainsKey(TraefikDefault.Claims))
-                return new RequestCredential();
-            var requestClaim = requestHeaders[TraefikDefault.Claims];
-            return new RequestCredential(requestClaim);
+            var result = new RequestHeader();
+
+            if (requestHeaders.ContainsKey(TraefikDefault.Claims))
+                result.SetCredential(requestHeaders[TraefikDefault.Claims]);
+
+            if (requestHeaders.ContainsKey(TraefikDefault.Channel))
+                result.SetChannel(requestHeaders[TraefikDefault.Channel]);
+
+            if (requestHeaders.ContainsKey(TraefikDefault.CommandId))
+                result.SetCommand(requestHeaders[TraefikDefault.CommandId]);
+
+            return result;
+
         }
 
-        public static IRequestChannel GetRequestChannel(this HttpContext context)
-        {
-            var requestHeaders = context.Request.Headers;
-            if (!requestHeaders.ContainsKey(TraefikDefault.Channel))
-                return new RequestChannel();
-            var requestChannel = requestHeaders[TraefikDefault.Channel];
-            return new RequestChannel(requestChannel);
-        }
-
-        public static IRequestCommand GetRequestCommand(this HttpContext context)
-        {
-            var requestHeaders = context.Request.Headers;
-            if (!requestHeaders.ContainsKey(TraefikDefault.CommandId))
-                return new RequestCommand(Guid.NewGuid().ToString());
-            var commandId = requestHeaders[TraefikDefault.CommandId];
-            return new RequestCommand(commandId);
-        }
-
-        public static IRequestCredential RefreshRequestCredential(this IRequestCredential requestCredential, HttpContext context)
+        public static IRequestHeader RefreshRequestCredential(this IRequestHeader requestHeader, HttpContext context)
         {
             if (context.Request.Headers.ContainsKey(TraefikDefault.Claims))
-                requestCredential.SetClaims(context.Request.Headers[TraefikDefault.Claims]);
-            return requestCredential;
+                requestHeader.SetCredential(context.Request.Headers[TraefikDefault.Claims]);
+            return requestHeader;
         }
     }
 }

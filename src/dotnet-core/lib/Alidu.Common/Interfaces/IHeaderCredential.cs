@@ -1,6 +1,6 @@
 ﻿namespace Alidu.Common.Interfaces
 {
-    public interface IRequestCredential
+    public interface IHeaderCredential
     {
         string OwnerId { get; }
         string OrgId { get; }

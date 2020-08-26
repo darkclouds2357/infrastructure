@@ -29,27 +29,25 @@ namespace Alidu.MessageBus.RabbitMQ
         private IBasicProperties GetBasicProperties(IModel model, out string correlationId)
         {
             using var scope = _serviceProvider.CreateScope();
-            var requestCredential = scope.ServiceProvider.GetRequiredService<IRequestCredential>();
-            var requestTransaction = scope.ServiceProvider.GetRequiredService<IRequestCommand>();
-            var requestChannel = scope.ServiceProvider.GetService<IRequestChannel>();
+            var requestHeader = scope.ServiceProvider.GetRequiredService<IRequestHeader>();
             var properties = model.CreateBasicProperties();
             if (properties.Headers == null)
                 properties.Headers = new Dictionary<string, object>();
 
-            if (!string.IsNullOrWhiteSpace(requestCredential.ToString()))
-                properties.Headers[TraefikDefault.Claims] = Encoding.UTF8.GetBytes(requestCredential.ToString());
+            if (!string.IsNullOrWhiteSpace(requestHeader.Credential.ToString()))
+                properties.Headers[TraefikDefault.Claims] = Encoding.UTF8.GetBytes(requestHeader.Credential.ToString());
 
-            if (!string.IsNullOrWhiteSpace(requestChannel.ToString()))
-                properties.Headers[TraefikDefault.Channel] = Encoding.UTF8.GetBytes(requestChannel?.ToString());
+            if (!string.IsNullOrWhiteSpace(requestHeader.Channel.ToString()))
+                properties.Headers[TraefikDefault.Channel] = Encoding.UTF8.GetBytes(requestHeader.Channel?.ToString());
 
-            if (!string.IsNullOrWhiteSpace(requestTransaction.CommandId))
-                properties.Headers[TraefikDefault.CommandId] = Encoding.UTF8.GetBytes(requestTransaction.CommandId);
+            if (!string.IsNullOrWhiteSpace(requestHeader.Command.CommandId))
+                properties.Headers[TraefikDefault.CommandId] = Encoding.UTF8.GetBytes(requestHeader.Command.CommandId);
 
             foreach (var item in _channelConfig.Headers)
             {
                 properties.Headers[item.Key] = Encoding.UTF8.GetBytes(item.Value);
             }
-            correlationId = requestTransaction.CommandId ?? Guid.NewGuid().ToString();
+            correlationId = requestHeader.Command.CommandId ?? Guid.NewGuid().ToString();
 
             properties.DeliveryMode = 2; // persistent
             properties.CorrelationId = correlationId.ToString();

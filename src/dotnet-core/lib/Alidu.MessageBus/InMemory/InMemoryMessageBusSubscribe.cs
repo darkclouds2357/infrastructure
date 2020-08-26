@@ -98,24 +98,15 @@ namespace Alidu.MessageBus.InMemory
             using var scope = _serviceProvider.CreateScope();
 
             var subscriptions = _subsManager.GetHandlersForMessage(messageName);
-            if (queueMessage.Credential != null)
-            {
-                var claims = queueMessage.Credential.ToString();
-                var requestCredential = scope.ServiceProvider.GetRequiredService<IRequestCredential>();
-                requestCredential.SetClaims(claims);
-            }
 
-            if (queueMessage.Channel != null)
+
+            if (queueMessage.Header != null)
             {
-                var channel = queueMessage.Channel.ToString();
-                var requestChannel = scope.ServiceProvider.GetRequiredService<IRequestChannel>();
-                requestChannel.SetChannel(channel);
-            }
-            if (queueMessage.Command != null)
-            {
-                var command = queueMessage.Command.CommandId;
-                var requestTransaction = scope.ServiceProvider.GetRequiredService<IRequestCommand>();
-                requestTransaction.SetCommandId(command);
+                var header = queueMessage.Header;
+                var requestHeader = scope.ServiceProvider.GetRequiredService<IRequestHeader>();
+                requestHeader.SetCredential(header.Credential.ToString());
+                requestHeader.SetChannel(header.Channel.ToString());
+                requestHeader.SetCommand(header.Command.ToString());
             }
 
             var message = queueMessage.Payload;

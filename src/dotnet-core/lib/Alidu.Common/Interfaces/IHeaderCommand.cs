@@ -1,6 +1,6 @@
 ﻿namespace Alidu.Common.Interfaces
 {
-    public interface IRequestCommand
+    public interface IHeaderCommand
     {
         string CommandId { get; }
 

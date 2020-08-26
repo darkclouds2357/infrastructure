@@ -13,7 +13,7 @@ namespace Alidu.Core.EFCore
 {
     public abstract class EFContext : DbContext, IUnitOfWork
     {
-        private readonly IRequestCredential _requestCredential;
+        private readonly IRequestHeader _requestHeader;
         private readonly ILogger _logger;
         private IDbContextTransaction _currentTransaction;
 
@@ -21,9 +21,9 @@ namespace Alidu.Core.EFCore
         {
         }
 
-        public EFContext(DbContextOptions options, IRequestCredential requestCredential, ILogger logger) : this(options)
+        public EFContext(DbContextOptions options, IRequestHeader requestHeader, ILogger logger) : this(options)
         {
-            _requestCredential = requestCredential;
+            _requestHeader = requestHeader;
             _logger = logger;
         }
 
@@ -148,10 +148,10 @@ namespace Alidu.Core.EFCore
             }
         }
 
-        private string GetLoggedinOrgId() => _requestCredential.OrgId;
+        private string GetLoggedinOrgId() => _requestHeader.Credential.OrgId;
 
-        private string GetLoggedinOwnerId() => _requestCredential.OwnerId;
+        private string GetLoggedinOwnerId() => _requestHeader.Credential.OwnerId;
 
-        private string GetLoggedinWorkingOrgId() => _requestCredential.WorkingOrgId;
+        private string GetLoggedinWorkingOrgId() => _requestHeader.Credential.WorkingOrgId;
     }
 }

@@ -27,14 +27,14 @@ namespace Alidu.Core.MongoDB
 
         protected readonly IMongoDatabase Database;
         private readonly ILogger<MongoContext> _logger;
-        private readonly IRequestCredential _requestCredential;
+        private readonly IRequestHeader _requestHeader;
         private static Dictionary<Type, string> _entityName = new Dictionary<Type, string>();
 
-        public MongoContext(IMongoDatabase mongoDatabase, ILogger<MongoContext> logger, IRequestCredential requestCredential)
+        public MongoContext(IMongoDatabase mongoDatabase, ILogger<MongoContext> logger, IRequestHeader requestHeader)
         {
             Database = mongoDatabase;
             _logger = logger;
-            _requestCredential = requestCredential;
+            _requestHeader = requestHeader;
         }
 
         public Guid TransactionId { get; private set; }
@@ -152,10 +152,10 @@ namespace Alidu.Core.MongoDB
             }
         }
 
-        private string GetLoggedinOrgId() => _requestCredential.OrgId;
+        private string GetLoggedinOrgId() => _requestHeader.Credential.OrgId;
 
-        private string GetLoggedinOwnerId() => _requestCredential.OwnerId;
+        private string GetLoggedinOwnerId() => _requestHeader.Credential.OwnerId;
 
-        private string GetLoggedinWorkingOrgId() => _requestCredential.WorkingOrgId;
+        private string GetLoggedinWorkingOrgId() => _requestHeader.Credential.WorkingOrgId;
     }
 }

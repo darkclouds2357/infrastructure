@@ -184,27 +184,25 @@ namespace Alidu.MessageBus.RabbitMQ
             {
                 using var scope = _serviceProvider.CreateScope();
                 var subscriptions = _subsManager.GetHandlersForMessage(messageName);
+                var requestHeader = scope.ServiceProvider.GetRequiredService<IRequestHeader>();
                 if (properties.Headers.ContainsKey(TraefikDefault.Claims))
                 {
                     var claimsBytes = properties.Headers[TraefikDefault.Claims] as byte[];
                     var claims = Encoding.UTF8.GetString(claimsBytes);
-                    var requestCredential = scope.ServiceProvider.GetRequiredService<IRequestCredential>();
-                    requestCredential.SetClaims(claims);
+                    requestHeader.SetCredential(claims);
                 }
 
                 if (properties.Headers.ContainsKey(TraefikDefault.Channel))
                 {
                     var channelBytes = properties.Headers[TraefikDefault.Channel] as byte[];
                     var channel = Encoding.UTF8.GetString(channelBytes);
-                    var requestChannel = scope.ServiceProvider.GetRequiredService<IRequestChannel>();
-                    requestChannel.SetChannel(channel);
+                    requestHeader.SetChannel(channel);
                 }
                 if (properties.Headers.ContainsKey(TraefikDefault.CommandId))
                 {
                     var commandBytes = properties.Headers[TraefikDefault.CommandId] as byte[];
                     var command = Encoding.UTF8.GetString(commandBytes);
-                    var requestTransaction = scope.ServiceProvider.GetRequiredService<IRequestCommand>();
-                    requestTransaction.SetCommandId(command);
+                    requestHeader.SetCommand(command);
                 }
 
                 foreach (var subscription in subscriptions)

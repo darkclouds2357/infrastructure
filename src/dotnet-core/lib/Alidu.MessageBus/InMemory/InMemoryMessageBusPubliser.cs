@@ -28,11 +28,9 @@ namespace Alidu.MessageBus.InMemory
         {
             using var scope = _serviceProvider.CreateScope();
 
-            var requestCredential = scope.ServiceProvider.GetRequiredService<IRequestCredential>();
-            var requestTransaction = scope.ServiceProvider.GetRequiredService<IRequestCommand>();
-            var requestChannel = scope.ServiceProvider.GetService<IRequestChannel>();
+            var requestHeader = scope.ServiceProvider.GetRequiredService<IRequestHeader>();
 
-            var queueMessage = new QueueMessage(message, requestCredential, requestChannel, requestTransaction);
+            var queueMessage = new QueueMessage(message, requestHeader);
 
             _inMemoryQueue.Publish(this, _channel, queueMessage);
 

@@ -17,9 +17,7 @@ namespace Alidu.MessageBus.RabbitMQ
         public static IServiceCollection AddSimpleRabbitMQ(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddEventBus(configuration);
-            services.AddScoped<IRequestCredential, RequestCredential>();
-            services.AddScoped<IRequestChannel, RequestChannel>();
-            services.AddScoped<IRequestCommand, RequestCommand>();
+            services.AddScoped<IRequestHeader, RequestHeader>();
             return services;
         }
 

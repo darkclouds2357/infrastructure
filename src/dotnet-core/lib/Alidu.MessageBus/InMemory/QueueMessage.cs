@@ -6,19 +6,15 @@ namespace Alidu.MessageBus.InMemory
 {
     public class QueueMessage
     {
-        public QueueMessage(object payload, IRequestCredential credential, IRequestChannel channel, IRequestCommand command)
+        public QueueMessage(object payload, IRequestHeader header)
         {
             Payload = JsonConvert.SerializeObject(payload);
-            Credential = credential;
-            Channel = channel;
-            Command = command;
-            CommandId = command?.CommandId ?? Guid.NewGuid().ToString();
+            Header = header;
+            CommandId = header?.Command?.CommandId ?? Guid.NewGuid().ToString();
         }
 
         public string Payload { get; }
-        public IRequestCredential Credential { get; }
-        public IRequestChannel Channel { get; }
-        public IRequestCommand Command { get; }
+        public IRequestHeader Header { get; }
         public string CommandId { get; }
     }
 }
