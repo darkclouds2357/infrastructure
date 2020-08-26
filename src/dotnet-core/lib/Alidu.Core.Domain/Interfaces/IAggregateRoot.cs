@@ -10,6 +10,7 @@ namespace Alidu.Core.Domain.Interfaces
         void SetId(string id);
 
         bool IsTransient();
+
         void ApplyEvent<TIntegrationEvent>(TIntegrationEvent @event) where TIntegrationEvent : IDomainEvent;
 
         IReadOnlyCollection<IDomainEvent> PendingEvents { get; }

@@ -1,6 +1,4 @@
 ﻿using Alidu.Common.Interfaces;
-using Alidu.Core.Domain;
-using Alidu.Core.Domain.Interfaces;
 using Alidu.CQRS;
 using Alidu.MessageBus.Interfaces;
 using Alidu.MessageBus.Settings;
@@ -66,7 +64,6 @@ namespace Alidu.MessageBus.InMemory
             {
                 ProcessMessagesAsync(messageNames, channel).GetAwaiter().GetResult();
             }
-
         }
 
         private string[] GetMessagesFromChannel(string channel)
@@ -149,7 +146,6 @@ namespace Alidu.MessageBus.InMemory
                     await (Task)concreteType.GetMethod("Handle").Invoke(handler, new object[] { queueMessage.CommandId, integrationEvent });
                 }
             }
-
         }
 
         public void Dispose()

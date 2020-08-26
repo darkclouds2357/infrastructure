@@ -1,7 +1,5 @@
 ﻿using Alidu.Common.Constants;
 using Alidu.Common.Interfaces;
-using Alidu.Core.Domain;
-using Alidu.Core.Domain.Interfaces;
 using Alidu.CQRS;
 using Alidu.MessageBus.Interfaces;
 using Alidu.MessageBus.RabbitMQ.Abstractions;
@@ -27,6 +25,7 @@ namespace Alidu.MessageBus.RabbitMQ
         public RabbitMQMessageBusPubliser(IRabbitMQPersistentConnection connection, ILogger<RabbitMQMessageBus> logger, IServiceProvider serviceProvider, ChannelConfig channelConfig, int retryCount) : base(connection, logger, serviceProvider, channelConfig, retryCount)
         {
         }
+
         private IBasicProperties GetBasicProperties(IModel model, out string correlationId)
         {
             using var scope = _serviceProvider.CreateScope();
@@ -153,7 +152,6 @@ namespace Alidu.MessageBus.RabbitMQ
             policy.Execute(() =>
             {
                 _logger.LogTrace($"Publishing dynamic message to RabbitMQ  {message}");
-
 
                 channel.BasicPublish(
                     exchange: _channelConfig.Exchange,

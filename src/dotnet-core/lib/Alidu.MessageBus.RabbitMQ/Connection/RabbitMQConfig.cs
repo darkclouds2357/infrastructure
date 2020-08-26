@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Alidu.MessageBus.RabbitMQ.Connection
 {
@@ -10,6 +8,7 @@ namespace Alidu.MessageBus.RabbitMQ.Connection
         public IReadOnlyDictionary<string, ChannelConfig> DispatcherChannels { get; set; }
         public IReadOnlyDictionary<string, ChannelConfig> ListenerChannels { get; set; }
     }
+
     public class ConnectionConfig
     {
         public string Url { get; set; }

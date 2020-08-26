@@ -4,7 +4,6 @@ using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -131,7 +130,6 @@ namespace Alidu.Core.MongoDB
 
             return entity;
         }
-
 
         private static UpdateDefinition<TEntity> CreateUpdateInstance<TEntity>(this MongoContext mongoContext, UpdateDefinition<TEntity> updateDefinition)
         {

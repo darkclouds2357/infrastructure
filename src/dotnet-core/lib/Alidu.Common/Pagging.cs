@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Alidu.Common
+﻿namespace Alidu.Common
 {
     public class Pagging
     {

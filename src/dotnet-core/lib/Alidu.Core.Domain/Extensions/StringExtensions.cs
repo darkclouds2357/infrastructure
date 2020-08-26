@@ -1,8 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using Pluralize.NET.Core;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace Alidu.Core.Domain

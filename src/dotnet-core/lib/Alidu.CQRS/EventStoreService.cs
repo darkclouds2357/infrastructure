@@ -1,15 +1,13 @@
-﻿using Alidu.Core.Domain;
-using Alidu.CQRS.Interfaces;
+﻿using Alidu.CQRS.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Alidu.CQRS
 {
-    class EventStoreService : IEventStoreService
+    internal class EventStoreService : IEventStoreService
     {
         private readonly IEventStoreProvider _eventStoreProvider;
 
@@ -17,6 +15,7 @@ namespace Alidu.CQRS
         {
             _eventStoreProvider = eventStoreProvider;
         }
+
         public Task MarkEventAsFailedAsync(Guid eventId, CancellationToken cancellationToken = default) => UpdateEventStatus(eventId, EventStateEnum.PublishedFailed);
 
         public Task MarkEventAsInProgressAsync(Guid eventId, CancellationToken cancellationToken = default) => UpdateEventStatus(eventId, EventStateEnum.InProgress);

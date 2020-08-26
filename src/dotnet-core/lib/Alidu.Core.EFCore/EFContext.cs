@@ -5,9 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -21,13 +19,14 @@ namespace Alidu.Core.EFCore
 
         public EFContext(DbContextOptions options) : base(options)
         {
-
         }
+
         public EFContext(DbContextOptions options, IRequestCredential requestCredential, ILogger logger) : this(options)
         {
             _requestCredential = requestCredential;
             _logger = logger;
         }
+
         public bool HasActiveTransaction => _currentTransaction != null;
         public Guid TransactionId => _currentTransaction?.TransactionId ?? Guid.NewGuid();
 
@@ -48,6 +47,7 @@ namespace Alidu.Core.EFCore
                     await afterCommitTransction(transactionId, cancellationToken);
             });
         }
+
         private async Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken = default)
         {
             if (_currentTransaction != null) return null;
@@ -112,6 +112,7 @@ namespace Alidu.Core.EFCore
             OnBeforeSaving();
             return base.SaveChangesAsync(cancellationToken);
         }
+
         private void OnBeforeSaving()
         {
             var ownerId = GetLoggedinOwnerId();
@@ -150,6 +151,7 @@ namespace Alidu.Core.EFCore
         private string GetLoggedinOrgId() => _requestCredential.OrgId;
 
         private string GetLoggedinOwnerId() => _requestCredential.OwnerId;
+
         private string GetLoggedinWorkingOrgId() => _requestCredential.WorkingOrgId;
     }
 }

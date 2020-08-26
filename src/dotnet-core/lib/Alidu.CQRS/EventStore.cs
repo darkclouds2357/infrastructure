@@ -1,13 +1,13 @@
-﻿using Alidu.Core.Domain;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 
 namespace Alidu.CQRS
 {
     public class EventStore
     {
-        private EventStore() { }
+        private EventStore()
+        {
+        }
+
         public EventStore(BaseMessage @event)
         {
             EventId = @event.Id;
@@ -17,6 +17,7 @@ namespace Alidu.CQRS
             TimesSent = 0;
             TransactionId = @event.TransactionId;
         }
+
         public Guid EventId { get; private set; }
         public Guid TransactionId { get; private set; }
         public BaseMessage Payload { get; private set; }

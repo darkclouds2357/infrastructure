@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Alidu.MessageBus.InMemory
 {
     public class InMemoryQueue
     {
-
         private readonly Dictionary<string, Queue<QueueMessage>> _queues;
 
         public event EventHandler<string> MessageReceived;
@@ -21,7 +19,6 @@ namespace Alidu.MessageBus.InMemory
             GetQueues(channel).Enqueue(queueMessage);
 
             MessageReceived?.Invoke(sender, channel);
-
         }
 
         public Queue<QueueMessage> GetQueues(string channel)

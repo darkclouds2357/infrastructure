@@ -2,8 +2,6 @@
 using Alidu.Common.Interfaces;
 using Microsoft.AspNetCore.Http;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Alidu.Common
 {

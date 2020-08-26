@@ -1,6 +1,4 @@
-﻿using Alidu.Core.Domain;
-using Alidu.Core.Domain.Interfaces;
-using Alidu.CQRS;
+﻿using Alidu.CQRS;
 using Alidu.MessageBus.Interfaces;
 using Alidu.MessageBus.Settings;
 using System;
@@ -17,7 +15,6 @@ namespace Alidu.MessageBus.Abstractions
         protected IReadOnlyDictionary<string, IMessageBusSubscribe> _messageBusSubscribe;
         protected IReadOnlyDictionary<string, MessageRouteConfig> _listenedMessageRoutes;
         protected IReadOnlyDictionary<Type, string> _messageTypes;
-
 
         private IEnumerable<IMessageBusPubliser> GetMessageBusPubliser(string eventName)
         {

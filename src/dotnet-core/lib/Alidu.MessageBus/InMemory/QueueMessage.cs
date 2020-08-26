@@ -1,14 +1,11 @@
 ﻿using Alidu.Common.Interfaces;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Alidu.MessageBus.InMemory
 {
     public class QueueMessage
     {
-
         public QueueMessage(object payload, IRequestCredential credential, IRequestChannel channel, IRequestCommand command)
         {
             Payload = JsonConvert.SerializeObject(payload);

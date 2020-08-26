@@ -9,7 +9,6 @@ using Polly;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -25,6 +24,7 @@ namespace Alidu.Core.MongoDB
             Modified = 3,
             Added = 4
         }
+
         protected readonly IMongoDatabase Database;
         private readonly ILogger<MongoContext> _logger;
         private readonly IRequestCredential _requestCredential;
@@ -59,6 +59,7 @@ namespace Alidu.Core.MongoDB
                     await afterCommitTransction(TransactionId, cancellationToken);
             });
         }
+
         protected void MapToCollection<T>(string name)
         {
             _entityName[typeof(T)] = name;
@@ -120,6 +121,7 @@ namespace Alidu.Core.MongoDB
                     }
                 );
         }
+
         internal void SetTrackable<TEntity>(TEntity entity, State state)
         {
             var userId = GetLoggedinOwnerId();
@@ -149,9 +151,11 @@ namespace Alidu.Core.MongoDB
                 entityBase.SetWorkingOrgId(workingOrgId);
             }
         }
+
         private string GetLoggedinOrgId() => _requestCredential.OrgId;
 
         private string GetLoggedinOwnerId() => _requestCredential.OwnerId;
+
         private string GetLoggedinWorkingOrgId() => _requestCredential.WorkingOrgId;
     }
 }

@@ -1,10 +1,6 @@
-﻿using Alidu.Core.Domain;
-using Alidu.Core.Domain.Interfaces;
+﻿using Alidu.Core.Domain.Interfaces;
 using Alidu.CQRS.Interfaces;
 using Alidu.MessageBus.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Alidu.CQRS.Handler
@@ -19,6 +15,7 @@ namespace Alidu.CQRS.Handler
             _integrationMessageService = integrationMessageService;
             _unitOfWork = unitOfWork;
         }
+
         public virtual async Task Handle(string correlationId, dynamic @event)
         {
             await _unitOfWork.ExecutionTransactionStrategy(async (transactionId, cancellationToken) =>

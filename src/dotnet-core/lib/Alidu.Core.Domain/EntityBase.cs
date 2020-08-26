@@ -1,7 +1,5 @@
 ﻿using Alidu.Core.Domain.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Alidu.Core.Domain
 {

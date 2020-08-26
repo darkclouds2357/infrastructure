@@ -1,6 +1,4 @@
-﻿using Alidu.Core.Domain;
-using Alidu.Core.Domain.Interfaces;
-using Alidu.CQRS;
+﻿using Alidu.CQRS;
 using Alidu.MessageBus.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -8,7 +6,7 @@ using System.Linq;
 
 namespace Alidu.MessageBus.InMemory
 {
-    class InMemoryMessageBusSubscriptionsManager : IMessageBusSubscriptionsManager
+    internal class InMemoryMessageBusSubscriptionsManager : IMessageBusSubscriptionsManager
     {
         private readonly Dictionary<string, List<SubscriptionInfo>> _handlers;
         private readonly IReadOnlyDictionary<Type, string> _messageTypes;
@@ -143,6 +141,5 @@ namespace Alidu.MessageBus.InMemory
                 return _messageTypes[typeof(T)];
             throw new ArgumentNullException(typeof(T).Name);
         }
-
     }
 }

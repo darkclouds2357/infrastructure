@@ -9,8 +9,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Alidu.MessageBus.RabbitMQ
 {
@@ -79,7 +77,5 @@ namespace Alidu.MessageBus.RabbitMQ
             });
             return services;
         }
-
     }
 }
-

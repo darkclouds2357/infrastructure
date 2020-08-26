@@ -5,7 +5,6 @@ using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Alidu.MessageBus.InMemory
 {
@@ -51,6 +50,5 @@ namespace Alidu.MessageBus.InMemory
             _messageBusSubscribe = listenedMessageBus;
             _listenedMessageRoutes = messageBusConfig.ListenedMessageRoutes ?? new Dictionary<string, MessageRouteConfig>();
         }
-
     }
 }

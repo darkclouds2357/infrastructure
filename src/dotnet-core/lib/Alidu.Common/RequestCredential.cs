@@ -1,7 +1,5 @@
 ﻿using Alidu.Common.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Alidu.Common
 {
@@ -9,7 +7,6 @@ namespace Alidu.Common
     {
         public RequestCredential()
         {
-
         }
 
         public RequestCredential(string claims) : this() => SetClaims(claims);

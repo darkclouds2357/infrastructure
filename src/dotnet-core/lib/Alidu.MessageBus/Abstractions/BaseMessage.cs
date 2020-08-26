@@ -1,10 +1,7 @@
 ﻿using Alidu.Core.Domain;
 using Alidu.Core.Domain.Interfaces;
-using MediatR;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Alidu.CQRS
 {
@@ -16,6 +13,7 @@ namespace Alidu.CQRS
             CreationDate = DateTime.UtcNow;
             MessageName = this.GetGenericTypeName();
         }
+
         public BaseMessage(string messageName) : this()
         {
             MessageName = messageName;
@@ -29,7 +27,6 @@ namespace Alidu.CQRS
             MessageName = messageName;
         }
 
-
         public Guid Id { get; private set; }
         public DateTime CreationDate { get; private set; }
         public int Version { get; set; }
@@ -37,6 +34,5 @@ namespace Alidu.CQRS
         public Guid TransactionId { get; private set; }
 
         public void SetTransactionId(Guid transactionId) => TransactionId = transactionId;
-
     }
 }

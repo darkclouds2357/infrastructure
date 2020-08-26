@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace Alidu.MessageBus.RabbitMQ.Connection
@@ -27,6 +25,7 @@ namespace Alidu.MessageBus.RabbitMQ.Connection
         public bool IsConfigDeadLetter => !string.IsNullOrEmpty(DeadLetterExchange) && !string.IsNullOrEmpty(DeadLetterKey);
 
         public string QueueOptions { get; set; }
+
         public bool IsRoutingMatch(string routing)
         {
             var routingPattern = RoutingKey.Replace("*", "[a-zA-Z0-9_^-]+");

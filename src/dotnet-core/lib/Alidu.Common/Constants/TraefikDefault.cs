@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Alidu.Common.Constants
+﻿namespace Alidu.Common.Constants
 {
     public class TraefikDefault
     {

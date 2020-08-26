@@ -1,11 +1,6 @@
-﻿using Alidu.Core.Domain;
-using Alidu.Core.Domain.Interfaces;
+﻿using Alidu.Core.Domain.Interfaces;
 using Alidu.CQRS.Interfaces;
-using Alidu.MessageBus.Interfaces;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 

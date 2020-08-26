@@ -1,7 +1,6 @@
 ﻿using Alidu.Common.Constants;
 using Alidu.Common.Interfaces;
 using Alidu.Core.Domain;
-using Alidu.Core.Domain.Interfaces;
 using Alidu.CQRS;
 using Alidu.MessageBus.Interfaces;
 using Alidu.MessageBus.RabbitMQ.Abstractions;
@@ -52,6 +51,7 @@ namespace Alidu.MessageBus.RabbitMQ
                 _consumerChannel.Close();
             }
         }
+
         private IModel CreateConsumerChannel()
         {
             if (!_connection.IsConnected)
@@ -96,6 +96,7 @@ namespace Alidu.MessageBus.RabbitMQ
 
             return channel;
         }
+
         private void CreateDeadLetterChannel()
         {
             var channel = _connection.CreateModel();
@@ -110,6 +111,7 @@ namespace Alidu.MessageBus.RabbitMQ
                                  autoDelete: false);
             channel.QueueBind(queue: _channelConfig.DeadLetterKey, exchange: _channelConfig.DeadLetterExchange, routingKey: _channelConfig.DeadLetterKey);
         }
+
         private void StartBasicConsume()
         {
             _logger.LogTrace("Starting RabbitMQ basic consume");
@@ -130,6 +132,7 @@ namespace Alidu.MessageBus.RabbitMQ
                 _logger.LogError("StartBasicConsume can't call on _consumerChannel == null");
             }
         }
+
         private async Task Consumer_Received(object sender, BasicDeliverEventArgs eventArgs)
         {
             var exchange = eventArgs.Exchange;
@@ -162,6 +165,7 @@ namespace Alidu.MessageBus.RabbitMQ
                 _consumerChannel.BasicNack(eventArgs.DeliveryTag, multiple: false, requeue: false);
             }
         }
+
         private async Task ProcessMessagesAsync(string[] messageNames, string message, IBasicProperties properties)
         {
             var tasks = new List<Task>();
@@ -236,6 +240,7 @@ namespace Alidu.MessageBus.RabbitMQ
                 _logger.LogWarning("No subscription for RabbitMQ event: {EventName}", messageName);
             }
         }
+
         public void Dispose()
         {
             if (_consumerChannel != null)
@@ -283,6 +288,7 @@ namespace Alidu.MessageBus.RabbitMQ
         {
             _subsManager.RemoveDynamicSubscription<TH>(messageName);
         }
+
         private void DoInternalSubscription()
         {
             if (!_connection.IsConnected)

@@ -1,16 +1,12 @@
-﻿using Alidu.Core.Domain;
+﻿using Alidu.CQRS.Interfaces;
 using Alidu.MessageBus;
-using Alidu.MessageBus.Interfaces;
-using Alidu.CQRS.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Alidu.CQRS
 {
-    class IntegrationMessageService : IIntegrationMessageService
+    internal class IntegrationMessageService : IIntegrationMessageService
     {
         private readonly IMessageBus _messageBus;
         private readonly IEventStoreService _eventStoreService;
@@ -20,6 +16,7 @@ namespace Alidu.CQRS
             _messageBus = messageBus;
             _eventStoreService = eventStoreService;
         }
+
         public async Task AddAndSaveEventAsync(BaseMessage integrationMessage, CancellationToken cancellationToken = default)
         {
             await _eventStoreService.SaveEventAsync(integrationMessage, cancellationToken);

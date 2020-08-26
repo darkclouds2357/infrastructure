@@ -1,8 +1,6 @@
 ﻿using Alidu.MessageBus.RabbitMQ.Connection;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Alidu.MessageBus.RabbitMQ.Abstractions
 {

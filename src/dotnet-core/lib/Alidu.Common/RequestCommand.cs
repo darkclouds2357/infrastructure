@@ -1,7 +1,4 @@
 ﻿using Alidu.Common.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Alidu.Common
 {
@@ -11,6 +8,7 @@ namespace Alidu.Common
         {
             CommandId = commandId;
         }
+
         public string CommandId { get; private set; }
 
         public void SetCommandId(string commandId) => CommandId = commandId;

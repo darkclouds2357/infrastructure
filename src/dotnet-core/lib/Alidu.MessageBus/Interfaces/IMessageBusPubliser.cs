@@ -1,6 +1,4 @@
-﻿using Alidu.Core.Domain;
-using Alidu.Core.Domain.Interfaces;
-using Alidu.CQRS;
+﻿using Alidu.CQRS;
 
 namespace Alidu.MessageBus.Interfaces
 {
