@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Alidu.Core.Common\Alidu.Core.Common.csproj" />
+    <ProjectReference Include="..\Alidu.Common\Alidu.Common.csproj" />
   </ItemGroup>
 
   <ItemGroup>

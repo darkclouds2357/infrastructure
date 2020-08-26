@@ -10,9 +10,9 @@ namespace Alidu.Core.Domain.Interfaces
         void SetId(string id);
 
         bool IsTransient();
-        void ApplyEvent<TIntegrationEvent>(TIntegrationEvent @event) where TIntegrationEvent : IntegrationMessage;
+        void ApplyEvent<TIntegrationEvent>(TIntegrationEvent @event) where TIntegrationEvent : IDomainEvent;
 
-        IReadOnlyCollection<IntegrationMessage> PendingEvents { get; }
+        IReadOnlyCollection<IDomainEvent> PendingEvents { get; }
 
         void ClearPendingEvents();
     }

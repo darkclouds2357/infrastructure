@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Alidu.Core.Domain.Interfaces;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Alidu.Core.Domain
@@ -7,35 +8,35 @@ namespace Alidu.Core.Domain
     {
         public int Version { get; private set; } = 0;
 
-        private LinkedList<IntegrationMessage> _pendingEvents;
+        private LinkedList<IDomainEvent> _pendingEvents;
 
         [JsonIgnore]
-        public IReadOnlyCollection<IntegrationMessage> PendingEvents => _pendingEvents ?? new LinkedList<IntegrationMessage>();
+        public IReadOnlyCollection<IDomainEvent> PendingEvents => _pendingEvents ?? new LinkedList<IDomainEvent>();
 
         [JsonIgnore]
-        public LinkedList<IntegrationMessage> AppliedEvents { get; private set; }
+        public LinkedList<IDomainEvent> AppliedEvents { get; private set; }
 
-        public void AddEvent<TIntegrationEvent>(TIntegrationEvent eventItem, bool isApply = true) where TIntegrationEvent: IntegrationMessage
+        public void AddEvent<TDomainEvent>(TDomainEvent eventItem, bool isApply = true) where TDomainEvent : IDomainEvent
         {
-            _pendingEvents ??= new LinkedList<IntegrationMessage>();
+            _pendingEvents ??= new LinkedList<IDomainEvent>();
             _pendingEvents.AddLast(eventItem);
             if (!isApply)
                 return;
             ApplyEvent(eventItem);
         }
 
-        public void ApplyEvent<TIntegrationEvent>(TIntegrationEvent @event) where TIntegrationEvent : IntegrationMessage
+        public void ApplyEvent<TDomainEvent>(TDomainEvent @event) where TDomainEvent : IDomainEvent
         {
             ((dynamic)this).Apply((dynamic)@event);
             Version++;
 
             @event.Version = Version;
 
-            AppliedEvents ??= new LinkedList<IntegrationMessage>();
+            AppliedEvents ??= new LinkedList<IDomainEvent>();
             AppliedEvents.AddLast(@event);
         }
 
-        public void RemovePendingEvent<TIntegrationEvent>(TIntegrationEvent eventItem) where TIntegrationEvent : IntegrationMessage
+        public void RemovePendingEvent<TDomainEvent>(TDomainEvent eventItem) where TDomainEvent : IDomainEvent
         {
             _pendingEvents?.Remove(eventItem);
         }
