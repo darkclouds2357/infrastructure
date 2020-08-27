@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Alidu.Core.ServiceHost\Alidu.Core.ServiceHost.csproj" />
+    <ProjectReference Include="..\Alidu.CQRS\Alidu.CQRS.csproj" />
+    <ProjectReference Include="..\Alidu.MessageBus\Alidu.MessageBus.csproj" />
+  </ItemGroup>
+
+</Project>

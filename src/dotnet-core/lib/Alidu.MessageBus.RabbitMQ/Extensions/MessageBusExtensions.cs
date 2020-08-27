@@ -14,17 +14,54 @@ namespace Alidu.MessageBus.RabbitMQ
 {
     public static class MessageBusExtensions
     {
-        public static IServiceCollection AddSimpleRabbitMQ(this IServiceCollection services, IConfiguration configuration)
+        public static IMessageBus UseRabbitMQ(this IServiceProvider serviceProvider)
         {
-            services.AddMesageBusRabbitMQ(configuration);
-            services.AddScoped<IRequestHeader, RequestHeader>();
-            return services;
+            var logger = serviceProvider.GetRequiredService<ILogger<RabbitMQMessageBus>>();
+            var connection = serviceProvider.CreateRabbitMQPersistentConnection();
+            var setting = serviceProvider.GetRequiredService<IOptions<MessageBusConfig>>();
+            var messageTypes = serviceProvider.GetService<MessageTypeConfig>();
+            var subsManager = serviceProvider.GetRequiredService<IMessageBusSubscriptionsManager>();
+            var sp = serviceProvider.GetRequiredService<IServiceProvider>();
+
+            var rabbitMQConfig = serviceProvider.GetRequiredService<IOptions<RabbitMQConfig>>().Value;
+            var connectionOption = rabbitMQConfig.Connection;
+
+            return new RabbitMQMessageBusManager(connection, logger, sp, subsManager, setting, messageTypes, rabbitMQConfig, connectionOption.RetryCount ?? 5);
+
         }
 
-        public static IServiceCollection AddMesageBusRabbitMQ(this IServiceCollection services, IConfiguration configuration, MessageTypeConfig messageTypeConfig = null)
+        private static IRabbitMQPersistentConnection CreateRabbitMQPersistentConnection(this IServiceProvider serviceProvider)
         {
-            services.AddMessageBusOptions(configuration, messageTypeConfig);
-            services.AddInMemoryMessageBusSubscriptions();
+            var logger = serviceProvider.GetRequiredService<ILogger<DefaultRabbitMQPersistentConnection>>();
+            var connectionOption = serviceProvider.GetRequiredService<IOptions<RabbitMQConfig>>().Value.Connection;
+
+            var factory = new ConnectionFactory()
+            {
+                DispatchConsumersAsync = true
+            };
+            if (!string.IsNullOrEmpty(connectionOption.Url))
+                factory.Uri = new Uri(connectionOption.Url);
+            else
+            {
+                if (!string.IsNullOrEmpty(connectionOption.HostName))
+                    factory.HostName = connectionOption.HostName;
+                if (!string.IsNullOrEmpty(connectionOption.UserName))
+                    factory.UserName = connectionOption.UserName;
+                if (!string.IsNullOrEmpty(connectionOption.Password))
+                    factory.Password = connectionOption.Password;
+                if (!string.IsNullOrEmpty(connectionOption.VirtualHost))
+                    factory.VirtualHost = connectionOption.VirtualHost;
+                if (connectionOption.Port.HasValue)
+                    factory.Port = connectionOption.Port.Value;
+            }
+
+            var retryCount = connectionOption.RetryCount ?? 5;
+
+            return new DefaultRabbitMQPersistentConnection(factory, logger, retryCount);
+        }
+
+        public static IServiceCollection AddMesageBusRabbitMQ(this IServiceCollection services, IConfiguration configuration)
+        {
             services.AddRabbitMQOptions(configuration);
             services.AddSingleton<IMessageBus>(sp =>
             {

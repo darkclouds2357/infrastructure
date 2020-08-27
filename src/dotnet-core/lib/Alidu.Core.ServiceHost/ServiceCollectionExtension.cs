@@ -19,7 +19,7 @@ namespace Alidu.Core.ServiceHost
 {
     public static class ServiceCollectionExtension
     {
-        public static IServiceCollection AddServices(this IServiceCollection services, IConfiguration configuration, Type startUpType)
+        public static IServiceCollection AddStartupServices(this IServiceCollection services, IConfiguration configuration, Type startUpType)
         {
             services.WarmupServiceStartup()
                 .AddCorsService(configuration)
@@ -29,10 +29,17 @@ namespace Alidu.Core.ServiceHost
                 .AddHttpContextAccessor()
                 .AddAutoMapper(startUpType)
                 .AddRequestHeader();
+
+            services.AddControllers();
+            services
+                .AddMvcCore(option => { })
+                .AddNewtonsoftJson(options => { })
+                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+
             return services;
         }
 
-        public static IServiceCollection AddApiVersioningService(this IServiceCollection services)
+        private static IServiceCollection AddApiVersioningService(this IServiceCollection services)
         {
             services.AddVersionedApiExplorer().AddApiVersioning(o =>
             {
@@ -49,7 +56,7 @@ namespace Alidu.Core.ServiceHost
             return services;
         }
 
-        public static IServiceCollection AddCorsService(this IServiceCollection services, IConfiguration configuration)
+        private static IServiceCollection AddCorsService(this IServiceCollection services, IConfiguration configuration)
         {
             var domains = configuration["Cors:Domains"].Split(',').ToArray();
             if (domains.Length > 0)
@@ -82,7 +89,7 @@ namespace Alidu.Core.ServiceHost
             return services;
         }
 
-        public static IServiceCollection AddOptionConfigurationServices(this IServiceCollection services)
+        private static IServiceCollection AddOptionConfigurationServices(this IServiceCollection services)
         {
             services.AddOptions();
 
@@ -157,7 +164,8 @@ namespace Alidu.Core.ServiceHost
                 //// Set the comments path for the Swagger JSON and UI.
                 var xmlFile = $"{assembly.GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                options.IncludeXmlComments(xmlPath);
+                if (File.Exists(xmlPath))
+                    options.IncludeXmlComments(xmlPath);
             });
 
             return services;

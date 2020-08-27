@@ -1,7 +1,9 @@
 ﻿using Alidu.Common.Exceptions;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,11 +13,33 @@ namespace Alidu.Core.ServiceHost
 {
     public static class ConfigurationExtension
     {
-        public static void UserServiceConfigure(this IApplicationBuilder app, IApiVersionDescriptionProvider provider, IConfiguration configuration)
+        public static void UserServiceConfigure(this IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider, IConfiguration configuration, params object[] middlewares)
         {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+
+            app.UseHttpsRedirection();
+
+            app.UseRouting();
+
             app.UseMiddleware<ExceptionMiddleware>();
             app.UseCorsz();
             app.UseSwaggerz(provider, configuration);
+
+            foreach (var middleware in middlewares)
+            {
+                app.UseMiddleware(middleware.GetType());
+            }
+
+            app.UseAuthorization();
+            app.UseAuthentication();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
         }
 
         public static void UseCorsz(this IApplicationBuilder app)

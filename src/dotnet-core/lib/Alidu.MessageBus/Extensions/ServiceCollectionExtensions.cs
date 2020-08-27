@@ -9,6 +9,15 @@ namespace Alidu.MessageBus
 {
     public static class ServiceCollectionExtensions
     {
+        public static IServiceCollection AddMessageBus<TConnectionConfig>(this IServiceCollection services, IConfiguration configuration, Func<IServiceProvider, IMessageBus> messageBusProvider, MessageTypeConfig messageTypeConfig = null) where TConnectionConfig : class
+        {
+            services.Configure<TConnectionConfig>(configuration);
+            services.AddMessageBusOptions(configuration, messageTypeConfig)
+                .AddInMemoryMessageBusSubscriptions()
+                .AddSingleton(messageBusProvider);
+
+            return services;
+        }
         public static IServiceCollection AddMessageBusOptions(this IServiceCollection services, IConfiguration configuration, MessageTypeConfig messageTypeConfig = null)
         {
             services.Configure<MessageTypeConfig>(configuration);
