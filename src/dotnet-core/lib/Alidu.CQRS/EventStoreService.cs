@@ -1,4 +1,5 @@
 ﻿using Alidu.CQRS.Interfaces;
+using Alidu.MessageBus.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +30,7 @@ namespace Alidu.CQRS
             return result.OrderBy(o => o.CreationTime);
         }
 
-        public async Task SaveEventAsync(BaseMessage @event, CancellationToken cancellationToken = default)
+        public async Task SaveEventAsync(AggregateEvent @event, CancellationToken cancellationToken = default)
         {
             var eventStoreEntry = new EventStore(@event);
 

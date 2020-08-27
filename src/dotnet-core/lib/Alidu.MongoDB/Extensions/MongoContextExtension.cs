@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Alidu.Core.MongoDB
+namespace Alidu.MongoDB
 {
     public static class MongoContextExtension
     {
@@ -62,16 +62,16 @@ namespace Alidu.Core.MongoDB
             var entityCollection = mongoContext.Set<TEntity>();
             var filter = Builders<TEntity>.Filter.Where(filterExpression);
 
-            if (entity is SimpleTrackableEntityBase simpleTrackableEntityBase)
+            if (entity is ISimpleTrackable simpleTrackableEntityBase)
             {
                 var existedEnity = entityCollection.Find(filter).FirstOrDefault();
-                if (existedEnity != null && existedEnity is SimpleTrackableEntityBase existedSimpleTrackableEntity)
+                if (existedEnity != null && existedEnity is ISimpleTrackable existedSimpleTrackableEntity)
                     simpleTrackableEntityBase.Created(existedSimpleTrackableEntity.CreatedByOrgId, existedSimpleTrackableEntity.CreatedDate, existedSimpleTrackableEntity.CreatedBy);
             }
-            else if (entity is TrackableEntityBase trackableEntityBase)
+            else if (entity is ITrackable trackableEntityBase)
             {
                 var existedEnity = entityCollection.Find(filter).FirstOrDefault();
-                if (existedEnity != null && existedEnity is TrackableEntityBase existedTrackableEntity)
+                if (existedEnity != null && existedEnity is ITrackable existedTrackableEntity)
                     trackableEntityBase.Created(existedTrackableEntity.CreatedByOrgId, existedTrackableEntity.CreatedDate, existedTrackableEntity.CreatedBy);
             }
 
@@ -110,16 +110,16 @@ namespace Alidu.Core.MongoDB
             var entityCollection = mongoContext.Set<TEntity>();
             var filter = Builders<TEntity>.Filter.Where(filterExpression);
 
-            if (entity is SimpleTrackableEntityBase simpleTrackableEntityBase)
+            if (entity is ISimpleTrackable simpleTrackableEntityBase)
             {
                 var existedEnity = await entityCollection.Find(filter).FirstOrDefaultAsync(cancellationToken);
-                if (existedEnity != null && existedEnity is SimpleTrackableEntityBase existedSimpleTrackableEntity)
+                if (existedEnity != null && existedEnity is ISimpleTrackable existedSimpleTrackableEntity)
                     simpleTrackableEntityBase.Created(existedSimpleTrackableEntity.CreatedByOrgId, existedSimpleTrackableEntity.CreatedDate, existedSimpleTrackableEntity.CreatedBy);
             }
-            else if (entity is TrackableEntityBase trackableEntityBase)
+            else if (entity is ITrackable trackableEntityBase)
             {
                 var existedEnity = await entityCollection.Find(filter).FirstOrDefaultAsync(cancellationToken);
-                if (existedEnity != null && existedEnity is TrackableEntityBase existedTrackableEntity)
+                if (existedEnity != null && existedEnity is ITrackable existedTrackableEntity)
                     trackableEntityBase.Created(existedTrackableEntity.CreatedByOrgId, existedTrackableEntity.CreatedDate, existedTrackableEntity.CreatedBy);
             }
 

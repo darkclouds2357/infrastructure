@@ -9,7 +9,7 @@ using System.Data;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Alidu.Core.EFCore
+namespace Alidu.EFCore
 {
     public abstract class EFContext : DbContext, IUnitOfWork
     {
@@ -141,7 +141,7 @@ namespace Alidu.Core.EFCore
                     simpleTrackableEntity.Created(orgId, now, ownerId);
                 }
 
-                if (entry.Entity is EntityBase entityBase && string.IsNullOrWhiteSpace(entityBase.WorkingOrgId))
+                if (entry.Entity is IEntityBase entityBase && string.IsNullOrWhiteSpace(entityBase.WorkingOrgId))
                 {
                     entityBase.SetWorkingOrgId(workingOrgId);
                 }

@@ -11,9 +11,9 @@ namespace Alidu.Core.Domain.Interfaces
 
         bool IsTransient();
 
-        void ApplyEvent<TIntegrationEvent>(TIntegrationEvent @event) where TIntegrationEvent : IDomainEvent;
+        void ApplyEvent<TIntegrationEvent>(TIntegrationEvent @event) where TIntegrationEvent : IAggregateEvent;
 
-        IReadOnlyCollection<IDomainEvent> PendingEvents { get; }
+        IReadOnlyCollection<IAggregateEvent> PendingEvents { get; }
 
         void ClearPendingEvents();
     }

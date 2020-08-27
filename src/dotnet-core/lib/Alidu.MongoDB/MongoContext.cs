@@ -12,7 +12,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Alidu.Core.MongoDB
+namespace Alidu.MongoDB
 {
     public abstract class MongoContext : IUnitOfWork
     {
@@ -146,7 +146,7 @@ namespace Alidu.Core.MongoDB
                 simpleTrackableEntity.Created(orgId, now, userId);
             }
 
-            if (entity is EntityBase entityBase && string.IsNullOrWhiteSpace(entityBase.WorkingOrgId))
+            if (entity is IEntityBase entityBase && string.IsNullOrWhiteSpace(entityBase.WorkingOrgId))
             {
                 entityBase.SetWorkingOrgId(workingOrgId);
             }

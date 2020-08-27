@@ -31,8 +31,11 @@ namespace Alidu.MessageBus
             return services;
         }
 
-        public static IServiceCollection AddInMemoryMessageBus(this IServiceCollection services)
+        public static IServiceCollection AddInMemoryMessageBus(this IServiceCollection services, IConfiguration configuration, MessageTypeConfig messageTypeConfig = null)
         {
+            services.AddMessageBusOptions(configuration, messageTypeConfig);
+            services.AddInMemoryMessageBusSubscriptions();
+
             services.AddSingleton<IMessageBus>(sp =>
             {
                 var setting = sp.GetRequiredService<IOptions<MessageBusConfig>>();

@@ -1,23 +1,24 @@
 ﻿using Alidu.CQRS.Interfaces;
 using Alidu.MessageBus;
+using Alidu.MessageBus.Abstractions;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Alidu.CQRS
 {
-    internal class IntegrationMessageService : IIntegrationMessageService
+    internal class AggregateEventService : IAggregateEventService
     {
         private readonly IMessageBus _messageBus;
         private readonly IEventStoreService _eventStoreService;
 
-        public IntegrationMessageService(IMessageBus messageBus, IEventStoreService eventStoreService)
+        public AggregateEventService(IMessageBus messageBus, IEventStoreService eventStoreService)
         {
             _messageBus = messageBus;
             _eventStoreService = eventStoreService;
         }
 
-        public async Task AddAndSaveEventAsync(BaseMessage integrationMessage, CancellationToken cancellationToken = default)
+        public async Task AddAndSaveEventAsync(AggregateEvent integrationMessage, CancellationToken cancellationToken = default)
         {
             await _eventStoreService.SaveEventAsync(integrationMessage, cancellationToken);
         }
@@ -31,7 +32,7 @@ namespace Alidu.CQRS
                 try
                 {
                     await _eventStoreService.MarkEventAsInProgressAsync(@event.EventId);
-                    _messageBus.Publish(@event.Payload);
+                    _messageBus.Publish(@event.EventName, @event.Payload);
                     await _eventStoreService.MarkEventAsPublishedAsync(@event.EventId);
                 }
                 catch

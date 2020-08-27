@@ -16,13 +16,15 @@ namespace Alidu.MessageBus.RabbitMQ
     {
         public static IServiceCollection AddSimpleRabbitMQ(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddEventBus(configuration);
+            services.AddMesageBusRabbitMQ(configuration);
             services.AddScoped<IRequestHeader, RequestHeader>();
             return services;
         }
 
-        public static IServiceCollection AddEventBus(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddMesageBusRabbitMQ(this IServiceCollection services, IConfiguration configuration, MessageTypeConfig messageTypeConfig = null)
         {
+            services.AddMessageBusOptions(configuration, messageTypeConfig);
+            services.AddInMemoryMessageBusSubscriptions();
             services.AddRabbitMQOptions(configuration);
             services.AddSingleton<IMessageBus>(sp =>
             {

@@ -14,5 +14,6 @@ namespace Alidu.CQRS.Interfaces
         Task AddAsync(EventStore eventStoreEntry, CancellationToken cancellationToken = default);
 
         Task<IEnumerable<EventStore>> GetEventsByTransactionIdAsync(Guid transactionId, EventStateEnum eventState = EventStateEnum.NotPublished, CancellationToken cancellationToken = default);
+        Task<IEnumerable<EventStore>> GetEventsAsync(string aggregateId, int fromVersion, CancellationToken cancellationToken = default);
     }
 }

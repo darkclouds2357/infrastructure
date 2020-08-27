@@ -8,7 +8,7 @@ namespace Alidu.Core.Domain
     {
         public static IEnumerable<object> GetPendingEvents(this IAggregateRoot aggregate)
         {
-            if (aggregate is DomainBase domain)
+            if (aggregate is AggregateRoot domain)
                 return domain.PendingEvents;
 
             return Enumerable.Empty<object>();

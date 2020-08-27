@@ -1,6 +1,6 @@
 ﻿using MongoDB.Driver;
 
-namespace Alidu.Core.MongoDB
+namespace Alidu.MongoDB
 {
     public class MongoDbContextOptions
     {

@@ -1,30 +1,37 @@
-﻿using System;
+﻿using Alidu.MessageBus.Abstractions;
+using System;
+using System.Data.SqlTypes;
 
 namespace Alidu.CQRS
 {
     public class EventStore
     {
-        private EventStore()
+        public EventStore()
         {
+            TimesSent = 0;
+            State = EventStateEnum.NotPublished;
         }
 
-        public EventStore(BaseMessage @event)
+        public EventStore(AggregateEvent @event) : this()
         {
+            AggregateId = @event.AggregateId;
             EventId = @event.Id;
             CreationTime = @event.CreationDate;
             Version = @event.Version;
-            State = EventStateEnum.NotPublished;
-            TimesSent = 0;
             TransactionId = @event.TransactionId;
+            Payload = @event;
+            EventName = @event.MessageName;
         }
 
-        public Guid EventId { get; private set; }
-        public Guid TransactionId { get; private set; }
-        public BaseMessage Payload { get; private set; }
+        public string AggregateId { get; set; }
+        public Guid EventId { get; set; }
+        public Guid TransactionId { get; set; }
+        public string EventName { get; set; }
+        public object Payload { get; set; }
         public EventStateEnum State { get; private set; }
         public int TimesSent { get; private set; }
-        public DateTime CreationTime { get; private set; }
-        public int Version { get; private set; }
+        public DateTime CreationTime { get; set; }
+        public int Version { get; set; }
 
         public void UpdateState(EventStateEnum status)
         {

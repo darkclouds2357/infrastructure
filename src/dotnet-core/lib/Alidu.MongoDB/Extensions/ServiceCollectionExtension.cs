@@ -5,7 +5,7 @@ using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 
-namespace Alidu.Core.MongoDB
+namespace Alidu.MongoDB
 {
     public static class ServiceCollectionExtension
     {

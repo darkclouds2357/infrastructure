@@ -1,13 +1,14 @@
-﻿using System;
+﻿using Alidu.MessageBus.Abstractions;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Alidu.CQRS.Interfaces
 {
-    public interface IIntegrationMessageService
+    public interface IAggregateEventService
     {
         Task PublishEventsThroughMessageBusAsync(Guid transactionId, CancellationToken cancellationToken = default);
 
-        Task AddAndSaveEventAsync(BaseMessage integrationMessage, CancellationToken cancellationToken = default);
+        Task AddAndSaveEventAsync(AggregateEvent integrationMessage, CancellationToken cancellationToken = default);
     }
 }

@@ -1,5 +1,5 @@
 ﻿using Alidu.Common.Interfaces;
-using Alidu.CQRS;
+using Alidu.MessageBus.Abstractions;
 using Alidu.MessageBus.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using System;

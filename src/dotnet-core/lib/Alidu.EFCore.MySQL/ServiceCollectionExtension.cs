@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using System;
 
-namespace Alidu.Core.EFCore.MySQL
+namespace Alidu.EFCore.MySQL
 {
     public static class ServiceCollectionExtension
     {

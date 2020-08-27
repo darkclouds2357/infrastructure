@@ -1,4 +1,4 @@
-﻿using Alidu.CQRS;
+﻿using Alidu.MessageBus.Abstractions;
 using Alidu.MessageBus.Interfaces;
 using System;
 using System.Collections.Generic;

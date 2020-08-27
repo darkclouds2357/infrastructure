@@ -12,12 +12,12 @@ namespace Alidu.CQRS
     {
         public static IServiceCollection AddCQRS(this IServiceCollection services, Func<IServiceProvider, IEventStoreProvider> eventStoreProvider, params Assembly[] assemblies)
         {
-            services.AddScoped<IIntegrationMessageService, IntegrationMessageService>();
+            services.AddScoped<IAggregateEventService, AggregateEventService>();
             services.AddScoped<IEventStoreService, EventStoreService>();
 
             services.AddScoped(eventStoreProvider);
 
-            var integrationAssembly = new List<Assembly> { typeof(IntegrationEventHandler<>).Assembly };
+            var integrationAssembly = new List<Assembly> { typeof(AggregateEventHandler<>).Assembly };
             integrationAssembly.AddRange(assemblies);
 
             services.AddMediatR(integrationAssembly.ToArray());

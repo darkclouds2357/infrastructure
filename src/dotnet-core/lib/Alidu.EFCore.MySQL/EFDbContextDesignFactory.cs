@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 using System;
 
-namespace Alidu.Core.EFCore.MySQL
+namespace Alidu.EFCore.MySQL
 {
     public abstract class EFDbContextDesignFactory<TContext> : IDesignTimeDbContextFactory<TContext>
         where TContext : EFContext

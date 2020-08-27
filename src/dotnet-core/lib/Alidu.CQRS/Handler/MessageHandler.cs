@@ -1,5 +1,6 @@
 ﻿using Alidu.Core.Domain.Interfaces;
 using Alidu.CQRS.Interfaces;
+using Alidu.MessageBus.Abstractions;
 using Alidu.MessageBus.Interfaces;
 using System.Threading.Tasks;
 
@@ -7,12 +8,12 @@ namespace Alidu.CQRS.Handler
 {
     public abstract class MessageHandler<TEvent> : IMessageHandler<TEvent> where TEvent : BaseMessage
     {
-        private readonly IIntegrationMessageService _integrationMessageService;
+        private readonly IAggregateEventService _aggregateEventService;
         private readonly IUnitOfWork _unitOfWork;
 
-        public MessageHandler(IIntegrationMessageService integrationMessageService, IUnitOfWork unitOfWork)
+        public MessageHandler(IAggregateEventService aggregateEventService, IUnitOfWork unitOfWork)
         {
-            _integrationMessageService = integrationMessageService;
+            _aggregateEventService = aggregateEventService;
             _unitOfWork = unitOfWork;
         }
 
@@ -24,7 +25,7 @@ namespace Alidu.CQRS.Handler
             },
             afterCommitTransction: async (transactionId, cancellationToken) =>
             {
-                await _integrationMessageService.PublishEventsThroughMessageBusAsync(transactionId);
+                await _aggregateEventService.PublishEventsThroughMessageBusAsync(transactionId);
             });
         }
 

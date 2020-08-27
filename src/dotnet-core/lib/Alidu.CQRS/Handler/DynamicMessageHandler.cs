@@ -7,12 +7,12 @@ namespace Alidu.CQRS.Handler
 {
     public abstract class DynamicMessageHandler : IDynamicMessageHandler
     {
-        private readonly IIntegrationMessageService _integrationMessageService;
+        private readonly IAggregateEventService _aggregateEventService;
         private readonly IUnitOfWork _unitOfWork;
 
-        public DynamicMessageHandler(IIntegrationMessageService integrationMessageService, IUnitOfWork unitOfWork)
+        public DynamicMessageHandler(IAggregateEventService integrationMessageService, IUnitOfWork unitOfWork)
         {
-            _integrationMessageService = integrationMessageService;
+            _aggregateEventService = integrationMessageService;
             _unitOfWork = unitOfWork;
         }
 
@@ -24,7 +24,7 @@ namespace Alidu.CQRS.Handler
             },
             afterCommitTransction: async (transactionId, cancellationToken) =>
             {
-                await _integrationMessageService.PublishEventsThroughMessageBusAsync(transactionId);
+                await _aggregateEventService.PublishEventsThroughMessageBusAsync(transactionId);
             });
         }
 

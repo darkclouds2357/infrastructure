@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Linq.Expressions;
 
-namespace Alidu.Core.EFCore
+namespace Alidu.EFCore
 {
     public static class ModelExtenstions
     {

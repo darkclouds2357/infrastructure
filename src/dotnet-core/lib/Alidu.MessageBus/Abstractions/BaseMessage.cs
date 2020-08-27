@@ -3,9 +3,9 @@ using Alidu.Core.Domain.Interfaces;
 using Newtonsoft.Json;
 using System;
 
-namespace Alidu.CQRS
+namespace Alidu.MessageBus.Abstractions
 {
-    public abstract class BaseMessage : IDomainEvent
+    public abstract class BaseMessage
     {
         public BaseMessage()
         {
@@ -29,7 +29,6 @@ namespace Alidu.CQRS
 
         public Guid Id { get; private set; }
         public DateTime CreationDate { get; private set; }
-        public int Version { get; set; }
         public string MessageName { get; private set; }
         public Guid TransactionId { get; private set; }
 

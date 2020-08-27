@@ -1,7 +1,7 @@
 ﻿using Alidu.Common.Constants;
 using Alidu.Common.Interfaces;
 using Alidu.Core.Domain;
-using Alidu.CQRS;
+using Alidu.MessageBus.Abstractions;
 using Alidu.MessageBus.Interfaces;
 using Alidu.MessageBus.RabbitMQ.Abstractions;
 using Alidu.MessageBus.RabbitMQ.Connection;
