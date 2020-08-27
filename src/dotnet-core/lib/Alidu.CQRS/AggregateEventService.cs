@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Alidu.CQRS
 {
-    internal class AggregateEventService : IAggregateEventService
+    class AggregateEventService : IAggregateEventService
     {
         private readonly IMessageBus _messageBus;
         private readonly IEventStoreService _eventStoreService;

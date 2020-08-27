@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Alidu.CQRS
 {
-    internal class EventStoreService : IEventStoreService
+    class EventStoreService : IEventStoreService
     {
         private readonly IEventStoreProvider _eventStoreProvider;
 
