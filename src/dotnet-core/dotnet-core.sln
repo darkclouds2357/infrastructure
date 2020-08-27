@@ -31,6 +31,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alidu.Core.Startup", "lib\A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alidu.Core.ServiceHost", "lib\Alidu.Core.ServiceHost\Alidu.Core.ServiceHost.csproj", "{6BD3E80B-6086-419D-92F4-2399C4C0E575}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "templates", "templates", "{E21CFEDB-59F4-4545-9C8A-59B5443CDCDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainServiceTemplate", "templates\DomainServiceTemplate\DomainServiceTemplate.csproj", "{09A0C836-C7C6-4ED0-A662-DD26B2962DF5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +85,10 @@ Global
 		{6BD3E80B-6086-419D-92F4-2399C4C0E575}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6BD3E80B-6086-419D-92F4-2399C4C0E575}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6BD3E80B-6086-419D-92F4-2399C4C0E575}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09A0C836-C7C6-4ED0-A662-DD26B2962DF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09A0C836-C7C6-4ED0-A662-DD26B2962DF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09A0C836-C7C6-4ED0-A662-DD26B2962DF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09A0C836-C7C6-4ED0-A662-DD26B2962DF5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -98,6 +106,7 @@ Global
 		{6B6C7EDC-6AB0-4B0F-AD26-8B967BDE17EC} = {610E5DE4-72A3-4028-9B3C-F50F79B28544}
 		{000B26D0-0932-496A-A71B-699D5B770C9E} = {FC212246-4981-471D-9556-AB6A2BDC4ADA}
 		{6BD3E80B-6086-419D-92F4-2399C4C0E575} = {FC212246-4981-471D-9556-AB6A2BDC4ADA}
+		{09A0C836-C7C6-4ED0-A662-DD26B2962DF5} = {E21CFEDB-59F4-4545-9C8A-59B5443CDCDD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E9B5ECFB-D392-4706-AFFB-131EB1BBC2F6}
