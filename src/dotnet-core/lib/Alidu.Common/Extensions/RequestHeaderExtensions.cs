@@ -1,14 +1,26 @@
 ﻿using Alidu.Common.Constants;
 using Alidu.Common.Interfaces;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 
 namespace Alidu.Common
 {
-    public static class AuthCredentialExtensions
+    public static class RequestHeaderExtensions
     {
-
-        public static IRequestHeader GetRequestHeader(this HttpContext context)
+        public static IServiceCollection AddRequestHeader(this IServiceCollection services)
+        {
+            services.AddScoped<IRequestHeader, RequestHeader>(sp =>
+            {
+                var httpContextAccessor = sp.GetRequiredService<IHttpContextAccessor>();
+                var httpContext = httpContextAccessor.HttpContext;
+                if (httpContext == null)
+                    return new RequestHeader();
+                return httpContextAccessor.HttpContext.GetRequestHeader();
+            });
+            return services;
+        }
+        public static RequestHeader GetRequestHeader(this HttpContext context)
         {
             var requestHeaders = context.Request.Headers;
             var result = new RequestHeader();
