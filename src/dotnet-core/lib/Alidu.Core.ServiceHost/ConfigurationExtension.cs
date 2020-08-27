@@ -28,10 +28,11 @@ namespace Alidu.Core.ServiceHost
             app.UseCorsz();
             app.UseSwaggerz(provider, configuration);
 
-            foreach (var middleware in middlewares)
-            {
-                app.UseMiddleware(middleware.GetType());
-            }
+            if (middlewares?.Any() ?? false)
+                foreach (var middleware in middlewares)
+                {
+                    app.UseMiddleware(middleware.GetType());
+                }
 
             app.UseAuthorization();
             app.UseAuthentication();
