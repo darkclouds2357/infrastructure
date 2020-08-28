@@ -1,0 +1,229 @@
+version: '3.5'
+
+services:
+    rabbitmq:
+        container_name: rabbitmq
+        image: rabbitmq
+        restart: always
+        build:
+            context: ./_docker/rabbitmq
+            dockerfile: Dockerfile
+        labels:
+            - traefik.enable=true
+        networks:
+            - traefik_proxy
+        volumes:
+            - ./_docker/rabbitmq/config/my-rabbitmq.config:/etc/rabbitmq/rabbitmq.config:ro
+        ports:
+            - "5671:5671"
+            - "6817:5671"
+            - "6827:5672"
+            - "5672:5672"
+            - "15671:15671"
+            - "15672:15672"
+            - "15673:15673"
+            - "15674:15674"
+            - "56174:15674"
+            - "15692:15692" # prometheus metrics
+
+    rmqnotifier:
+        container_name: rmqnotifier
+        image: rmqnotifier
+        restart: always
+        build:
+            context: ./_docker/rabbitmq
+            dockerfile: Dockerfile
+        labels:
+            - traefik.enable=true
+        networks:
+            - traefik_proxy
+        volumes:
+            - ./_docker/rabbitmq/config/my-rabbitmq.config:/etc/rabbitmq/rabbitmq.config:ro
+        ports:
+            - "5617:5671"
+            - "5627:5672"
+            - "15617:15671"
+            - "15627:15672"
+            - "15637:15673"
+            - "15647:15674"
+            - "61631:61613" # stomp port default
+            - "61641:61614" # stomp port default
+            - "15693:15692" # prometheus metrics
+            
+    mongodb:
+        container_name: mongodb
+        image: mongo:4.2
+        restart: always
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: root
+            MONGO_INITDB_ROOT_PASSWORD: admin-pass
+        ports:
+            - 21271:27017
+        volumes:
+            - ~/mongodb/data/db:/data/db
+        networks:
+            - traefik_proxy
+        labels:
+            - traefik.enable=false
+
+    mariaDb:
+        image: mariadb
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: admin-pass
+        ports:
+            - 6303:3306
+        volumes:
+            - ~/mariaDb/data/db:/var/lib/mysql
+        networks:
+            - traefik_proxy
+        labels:
+            - traefik.enable=false
+    
+    traefik-reverse-proxy:
+        hostname: traefik
+        image: "traefik:1.7.11-alpine"
+        container_name: "traefik"
+        restart: always
+        command: 
+            --web --logLevel=info
+            --entryPoints="Name:http Address::80" 
+            --entryPoints="Name:https Address::443 TLS"
+            --defaultentrypoints=http,https
+            --docker 
+            --docker.endpoint="unix:///var/run/docker.sock"
+            --docker.watch=true 
+            --docker.exposedbydefault="false"
+        ports:
+            - "68:80"
+            - "8888:8080"
+            - "4483:443"
+            - "4433:443"
+            - "4443:4443"
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+            - ./_docker/traefik:/etc/traefik/
+        labels:
+            - traefik.enable=false
+        networks:
+            - traefik_proxy
+            
+    dummy:
+        image: containous/whoami
+        container_name: dummy
+        networks:
+            - traefik_proxy
+        labels:
+              # container labels (defaults)
+            - "traefik.enable=true"
+            - "traefik.backend=dummy"
+            - "traefik.docker.network=traefik_proxy"
+            - "traefik.port=80"
+            - "traefik.protocol=http"
+            - "traefik.cors.frontend.rule=Method:OPTIONS"
+            - "traefik.cors.frontend.headers.customResponseHeaders=Access-Control-Allow-Origin:*||Access-Control-Allow-Methods:*||Access-Control-Allow-Headers:*||Access-Control-Allow-Credentials:true"
+    redis:
+        container_name: redis
+        image: 'bitnami/redis:latest'
+        networks:
+            - traefik_proxy
+        environment:
+        # ALLOW_EMPTY_PASSWORD is recommended only for development.
+        - ALLOW_EMPTY_PASSWORD=yes
+        #- REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL
+        # - REDIS_PASSWORD=a55m1n-P@ss
+        ports:
+        - '6937:6379'
+        volumes:
+        - 'redis_data:/bitnami/redis/data'
+
+    prometheus:
+        image: prometheus
+        container_name: prometheus
+        build:
+            context: ./_docker/prometheus
+            dockerfile: Dockerfile
+        ports:
+            - 9292:9090
+        command:
+            - --config.file=/etc/prometheus/prometheus.yml
+        volumes:
+            - ./_docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+        depends_on:
+            - cadvisor
+            - node-exporter
+            - mongodb
+            - rabbitmq
+        networks:
+            - traefik_proxy
+
+    mongodb-exporter:
+        image: bitnami/mongodb-exporter
+        container_name: mongo-exporter
+        restart: always
+        links:
+            - mongodb:mongodb
+        depends_on:
+            - "mongodb"
+        ports:
+            - 9216:9216
+        environment:
+            MONGODB_URI: "mongodb://root:admin-pass@mongodb:21271"
+        networks:
+            - traefik_proxy
+
+    node-exporter:
+        image: prom/node-exporter:latest
+        container_name: monitoring_node_exporter
+        restart: unless-stopped
+        expose:
+            - 9100
+        networks:
+            - traefik_proxy
+
+# cadvisor ==========
+
+    cadvisor:
+        image: gcr.io/google-containers/cadvisor:latest
+        container_name: cadvisor
+        ports:
+            - 8181:8181
+        volumes:
+            - /:/rootfs:ro
+            - /var/run:/var/run:rw
+            - /sys:/sys:ro
+        networks:
+            - traefik_proxy
+
+# grafana
+
+    grafana:
+        image: grafana/grafana:latest
+        container_name: monitoring_grafana
+        restart: unless-stopped
+        networks:
+            - traefik_proxy
+        user: "0:0"
+        ports:
+            - 8891:3000
+        links:
+            - prometheus:prometheus
+        volumes:
+            - ../storage/data/grafana:/var/lib/grafana
+        environment:
+            - GF_SECURITY_ADMIN_PASSWORD=Bravo123
+            - GF_USERS_ALLOW_SIGN_UP=false
+            - GF_SERVER_DOMAIN=localhost
+
+# ==========================================================================
+# networks: ================================================================
+# ==========================================================================
+networks:
+    traefik_proxy:
+        name: traefik_proxy
+        driver: bridge
+    nuget_proxy:
+        driver: bridge
+volumes:
+  redis_data:
+    driver: local
