@@ -33,9 +33,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alidu.Core.ServiceHost", "l
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "templates", "templates", "{E21CFEDB-59F4-4545-9C8A-59B5443CDCDD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleDomainService", "templates\DomainServiceTemplate\SampleDomainService.csproj", "{09A0C836-C7C6-4ED0-A662-DD26B2962DF5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleDomainService", "templates\SampleDomainService\SampleDomainService.csproj", "{09A0C836-C7C6-4ED0-A662-DD26B2962DF5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleDomainServiceTest", "SampleDomainServiceTest\SampleDomainServiceTest.csproj", "{416B0815-A75F-4E20-9F8A-F45935FA5AC0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleDomainServiceTest", "templates\SampleDomainServiceTest\SampleDomainServiceTest.csproj", "{416B0815-A75F-4E20-9F8A-F45935FA5AC0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alidu.xUnitTest", "lib\Alidu.xUnitTest\Alidu.xUnitTest.csproj", "{2E5F8C3B-D4B3-4BBE-9E6D-C78F7FD73ACF}"
 EndProject
