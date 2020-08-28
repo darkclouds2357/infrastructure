@@ -1,0 +1,14 @@
+{
+  "dispatchedMessageRoutes": {
+    "new_sample_created": {
+      "channels": [ "sample.created" ],
+      "payloadSchema": {}
+    }
+  },
+  "listenedMessageRoutes": {
+    "create_new_sample_command": {
+      "channels": [ "create.new.sample.channel" ],
+      "payloadSchema": {}
+    }
+  }
+}

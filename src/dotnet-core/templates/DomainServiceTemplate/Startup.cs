@@ -19,6 +19,9 @@ using Alidu.Core.Domain.Interfaces;
 using AutoMapper;
 using SampleDomainService.Data;
 using Alidu.MessageBus.RabbitMQ.Connection;
+using Alidu.MessageBus.Settings;
+using SampleDomainService.Application.Events;
+using SampleDomainService.Application.Commands;
 
 namespace SampleDomainService
 {
@@ -41,10 +44,28 @@ namespace SampleDomainService
                     return new EventStoreProvider(unitOfWork, mapper);
                 })
                 .AddStartupServices(Configuration, typeof(Startup))
-                .AddMessageBus<RabbitMQConfig>(Configuration, sp => sp.UseRabbitMQ(), new Alidu.MessageBus.Settings.MessageTypeConfig
-                {
+                .AddMessageBus<RabbitMQConfig>(Configuration, sp => sp.UseRabbitMQ(), GetMessageTypeConfig());
 
-                });
+            AddHandler(services);
+        }
+
+        protected void AddHandler(IServiceCollection services)
+        {
+            services.AddTransient<CreateSampleCommandHandler>();
+        }
+        protected MessageTypeConfig GetMessageTypeConfig()
+        {
+            return new MessageTypeConfig
+            {
+                DispatcherMessageTypes = new Dictionary<Type, string>
+                {
+                    [typeof(SampleCreatedEvent)] = SampleEventEnum.NEW_SAMPLE_CREATED_EVENT
+                },
+                ListenerMessageTypes = new Dictionary<Type, string>
+                {
+                    [typeof(CreateSampleCommand)] = SampleCommandEnum.CREATE_NEW_SAMPLE_COMMAND
+                }
+            };
         }
 
         public virtual void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider)

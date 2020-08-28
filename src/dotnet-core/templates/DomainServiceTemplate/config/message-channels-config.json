@@ -1,0 +1,35 @@
+{
+  "dispatcherChannels": {
+    "category.created": {
+      "exchange": "category.exchange",
+      "exchangeType": "topic",
+      "routingKey": "category.created.route",
+      "queueName": "category.created.queue"
+    },
+    "notifier.queue": {
+      "exchange": "notifier.queue",
+      "exchangeType": "direct",
+      "routingKey": "notifier.queue"
+    }
+  },
+  "listenerChannels": {
+    "create.category.command": {
+      "exchange": "category.exchange",
+      "exchangeType": "topic",
+      "routingKey": "create.category.route",
+      "queueName": "create.category.cmd.queue"
+    },
+    "update.category.command": {
+      "exchange": "category.exchange",
+      "exchangeType": "topic",
+      "routingKey": "update.category.route",
+      "queueName": "update.category.cmd.queue"
+    },
+    "delete.category.command": {
+      "exchange": "category.exchange",
+      "exchangeType": "topic",
+      "routingKey": "delete.category.route",
+      "queueName": "delete.category.cmd.queue"
+    }
+  }
+}
