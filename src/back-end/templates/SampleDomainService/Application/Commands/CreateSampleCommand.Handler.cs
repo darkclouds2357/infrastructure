@@ -1,13 +1,11 @@
 ﻿using Alidu.Core.Domain.Interfaces;
-using Alidu.CQRS.Handler;
 using Alidu.CQRS;
+using Alidu.CQRS.Handler;
 using Alidu.CQRS.Interfaces;
+using MediatR;
 using SampleDomainService.Data;
 using SampleDomainService.Models;
-using MediatR;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 

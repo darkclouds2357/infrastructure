@@ -2,9 +2,6 @@
 using Alidu.CQRS.Interfaces;
 using Alidu.MessageBus.Abstractions;
 using Alidu.MessageBus.Interfaces;
-using MediatR;
-using System;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace Alidu.CQRS.Handler

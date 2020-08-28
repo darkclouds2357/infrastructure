@@ -3,8 +3,6 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Alidu.CQRS.ExecptionHandler
@@ -29,6 +27,5 @@ namespace Alidu.CQRS.ExecptionHandler
 
             await _mediator.Publish(serviceExceptionEvent);
         }
-
     }
 }

@@ -4,9 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Serilog;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Alidu.Core.ServiceHost
@@ -14,7 +12,6 @@ namespace Alidu.Core.ServiceHost
     public static class DefaultProgram
     {
         public static readonly string EnvironmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-
 
         public static async Task<int> MainProgram<TStartup>(string appName, Action<IUnitOfWork, IServiceProvider> migrateSeeder, string[] args) where TStartup : class
         {
@@ -44,6 +41,7 @@ namespace Alidu.Core.ServiceHost
                 Log.CloseAndFlush();
             }
         }
+
         public static IWebHost BuildWebHost<TStartup>(IConfiguration configuration, string[] args) where TStartup : class
         {
             return WebHost.CreateDefaultBuilder(args)
@@ -58,10 +56,10 @@ namespace Alidu.Core.ServiceHost
                 .ConfigureLogging(logging => logging.AddSerilog())
                 .ConfigureKestrel(serverOptions =>
                 {
-
                 })
                 .Build();
         }
+
         public static Serilog.ILogger CreateSerilogLogger(string appName, IConfiguration configuration)
         {
             var filePath = configuration["Serilog:FilePath"];
@@ -102,7 +100,6 @@ namespace Alidu.Core.ServiceHost
             builder.AddJsonFile($"appsettings.{EnvironmentName}.json", optional: true, reloadOnChange: true);
             builder.AddJsonFile($"appsettings.local.json", optional: true, reloadOnChange: true);
             builder.AddEnvironmentVariables();
-
         }
     }
 }

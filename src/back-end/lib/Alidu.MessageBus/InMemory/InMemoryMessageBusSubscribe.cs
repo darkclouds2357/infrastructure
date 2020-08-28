@@ -99,7 +99,6 @@ namespace Alidu.MessageBus.InMemory
 
             var subscriptions = _subsManager.GetHandlersForMessage(messageName);
 
-
             if (queueMessage.Header != null)
             {
                 var header = queueMessage.Header;

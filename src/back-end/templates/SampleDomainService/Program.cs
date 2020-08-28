@@ -1,14 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Alidu.Core.ServiceHost;
-using SampleDomainService.Data;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using SampleDomainService.Data;
+using System.Threading.Tasks;
 
 namespace SampleDomainService
 {
@@ -27,6 +22,5 @@ namespace SampleDomainService
                 //new DbContextSeed().SeedAsync(context, logger, contentRootPath).Wait();
             }, args);
         }
-
     }
 }

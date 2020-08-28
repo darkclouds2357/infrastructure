@@ -2,7 +2,6 @@
 using Alidu.Common.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 
 namespace Alidu.Common
 {
@@ -20,6 +19,7 @@ namespace Alidu.Common
             });
             return services;
         }
+
         public static RequestHeader GetRequestHeader(this HttpContext context)
         {
             var requestHeaders = context.Request.Headers;
@@ -35,7 +35,6 @@ namespace Alidu.Common
                 result.SetCommand(requestHeaders[TraefikDefault.CommandId]);
 
             return result;
-
         }
 
         public static IRequestHeader RefreshRequestCredential(this IRequestHeader requestHeader, HttpContext context)

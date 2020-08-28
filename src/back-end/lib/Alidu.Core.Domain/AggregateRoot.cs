@@ -18,6 +18,7 @@ namespace Alidu.Core.Domain
         public LinkedList<IAggregateEvent> AppliedEvents { get; private set; }
 
         public void SetId(string id) => Id = id;
+
         public void AddEvent<TAggregateEvent>(TAggregateEvent @event, bool isFromHistory = false) where TAggregateEvent : IAggregateEvent
         {
             ApplyEvent(@event);
@@ -50,6 +51,5 @@ namespace Alidu.Core.Domain
         public void SetVersion(int version) => Version = version;
 
         public bool IsTransient() => string.IsNullOrWhiteSpace(Id);
-
     }
 }

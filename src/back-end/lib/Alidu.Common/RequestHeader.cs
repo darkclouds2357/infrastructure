@@ -1,7 +1,4 @@
 ﻿using Alidu.Common.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Alidu.Common
 {
@@ -9,8 +6,8 @@ namespace Alidu.Common
     {
         public RequestHeader()
         {
-
         }
+
         public IHeaderCredential Credential { get; }
 
         public IHeaderCommand Command { get; }
@@ -19,15 +16,14 @@ namespace Alidu.Common
 
         public void SetCredential(string claims)
         {
-
         }
+
         public void SetCommand(string commandHeader)
         {
-
         }
+
         public void SetChannel(string channelHeader)
         {
-
         }
     }
 }

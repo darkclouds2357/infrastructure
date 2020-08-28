@@ -3,12 +3,11 @@ using Alidu.CQRS;
 using Alidu.CQRS.Interfaces;
 using Alidu.MongoDB;
 using AutoMapper;
-using SampleDomainService.Data.Schemas;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using SampleDomainService.Data.Schemas;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -24,6 +23,7 @@ namespace SampleDomainService.Data
             _context = unitOfWork as ServiceContext;
             _mapper = mapper;
         }
+
         public async Task AddAsync(EventStore eventStoreEntry, CancellationToken cancellationToken = default)
         {
             var eventStoreSchema = _mapper.Map<EventStoreSchema>(eventStoreEntry);

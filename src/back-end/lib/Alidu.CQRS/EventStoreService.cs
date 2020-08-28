@@ -1,5 +1,4 @@
 ﻿using Alidu.CQRS.Interfaces;
-using Alidu.MessageBus.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Alidu.CQRS
 {
-    class EventStoreService : IEventStoreService
+    internal class EventStoreService : IEventStoreService
     {
         private readonly IEventStoreProvider _eventStoreProvider;
 

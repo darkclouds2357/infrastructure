@@ -1,7 +1,5 @@
-﻿using Alidu.MessageBus.Abstractions;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
-using System.Data.SqlTypes;
 
 namespace Alidu.CQRS
 {
@@ -42,7 +40,6 @@ namespace Alidu.CQRS
                 result = JsonConvert.DeserializeObject<T>(payloadJson);
             }
             return result;
-
         }
 
         public void UpdateState(EventStateEnum status)

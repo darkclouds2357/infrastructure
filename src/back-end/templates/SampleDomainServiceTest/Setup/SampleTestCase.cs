@@ -1,8 +1,4 @@
-﻿using Alidu.CQRS;
-using SampleDomainService.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace SampleDomainServiceTest.Setup
 {
@@ -10,7 +6,6 @@ namespace SampleDomainServiceTest.Setup
     {
         public Sample Instance { get; set; }
         public IReadOnlyList<EventStore> InstanceEvents { get; set; }
-
 
         public object RequestCommand { get; set; }
         public IReadOnlyList<EventStore> PublishedEvents { get; set; }

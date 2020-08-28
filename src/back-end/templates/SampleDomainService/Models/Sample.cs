@@ -1,12 +1,8 @@
 ﻿using Alidu.Core.Domain;
 using Alidu.Core.Domain.Interfaces;
-using Alidu.CQRS;
 using SampleDomainService.Application.Commands;
 using SampleDomainService.Application.Events;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SampleDomainService.Models
 {

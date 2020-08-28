@@ -1,6 +1,4 @@
-﻿using Alidu.Common;
-using Alidu.Common.Interfaces;
-using Alidu.MessageBus.RabbitMQ.Abstractions;
+﻿using Alidu.MessageBus.RabbitMQ.Abstractions;
 using Alidu.MessageBus.RabbitMQ.Connection;
 using Alidu.MessageBus.Settings;
 using Microsoft.Extensions.Configuration;
@@ -27,7 +25,6 @@ namespace Alidu.MessageBus.RabbitMQ
             var connectionOption = rabbitMQConfig.Connection;
 
             return new RabbitMQMessageBusManager(connection, logger, sp, subsManager, setting, messageTypes, rabbitMQConfig, connectionOption.RetryCount ?? 5);
-
         }
 
         private static IRabbitMQPersistentConnection CreateRabbitMQPersistentConnection(this IServiceProvider serviceProvider)

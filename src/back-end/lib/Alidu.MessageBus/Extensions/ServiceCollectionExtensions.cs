@@ -18,6 +18,7 @@ namespace Alidu.MessageBus
 
             return services;
         }
+
         public static IServiceCollection AddMessageBusOptions(this IServiceCollection services, IConfiguration configuration, MessageTypeConfig messageTypeConfig = null)
         {
             services.Configure<MessageTypeConfig>(configuration);

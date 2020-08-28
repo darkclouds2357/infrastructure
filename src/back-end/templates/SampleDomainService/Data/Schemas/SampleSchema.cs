@@ -1,8 +1,5 @@
 ﻿using Alidu.Core.Domain.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SampleDomainService.Data.Schemas
 {
@@ -26,7 +23,6 @@ namespace SampleDomainService.Data.Schemas
         public DateTime UpdatedDate { get; set; }
 
         public string UpdatedBy { get; set; }
-
 
         public void Created(string orgId, DateTime createdDate, string createdBy)
         {

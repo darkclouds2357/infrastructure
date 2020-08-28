@@ -1,13 +1,12 @@
 ﻿using Alidu.CQRS.Interfaces;
 using Alidu.MessageBus;
-using Alidu.MessageBus.Abstractions;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Alidu.CQRS
 {
-    class AggregateEventService : IAggregateEventService
+    internal class AggregateEventService : IAggregateEventService
     {
         private readonly IMessageBus _messageBus;
         private readonly IEventStoreService _eventStoreService;

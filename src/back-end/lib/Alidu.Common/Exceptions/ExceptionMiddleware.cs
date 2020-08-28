@@ -3,9 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Net;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Alidu.Common.Exceptions
@@ -47,7 +45,7 @@ namespace Alidu.Common.Exceptions
         protected virtual Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
             context.Response.ContentType = "application/json";
-             
+
             var (statusCode, errorMessage) = GetErrorMessage(exception);
 
             context.Response.StatusCode = statusCode;
@@ -79,7 +77,7 @@ namespace Alidu.Common.Exceptions
                     statusCode = (int)HttpStatusCode.Conflict;
                     errorMessage = JsonConvert.SerializeObject(businessRuleException.Messages);
                     break;
-                     
+
                 case HeaderException headerException:
                     statusCode = (int)HttpStatusCode.PreconditionFailed;
                     errorMessage = JsonConvert.SerializeObject(headerException.Messages);

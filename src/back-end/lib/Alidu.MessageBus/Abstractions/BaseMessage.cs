@@ -1,5 +1,4 @@
 ﻿using Alidu.Core.Domain;
-using Alidu.Core.Domain.Interfaces;
 using Newtonsoft.Json;
 using System;
 

@@ -7,6 +7,7 @@ namespace Alidu.Core.Domain.Interfaces
         string AggregateId { get; }
         string EventName { get; }
         int Version { get; }
+
         void SetAggregateVersion(string aggregateId, int version);
     }
 }

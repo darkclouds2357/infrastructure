@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Alidu.Common.Interfaces
+﻿namespace Alidu.Common.Interfaces
 {
     public interface IRequestHeader
     {
@@ -11,7 +7,9 @@ namespace Alidu.Common.Interfaces
         IHeaderChannel Channel { get; }
 
         void SetCredential(string claims);
+
         void SetCommand(string commandHeader);
+
         void SetChannel(string channelHeader);
     }
 }

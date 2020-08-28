@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Alidu.Core.ServiceHost
+﻿namespace Alidu.Core.ServiceHost
 {
     public class AuthenticationDefaults
     {

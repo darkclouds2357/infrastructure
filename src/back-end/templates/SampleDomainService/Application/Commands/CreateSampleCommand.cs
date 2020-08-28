@@ -1,10 +1,5 @@
-﻿using Alidu.CQRS;
-using Alidu.MessageBus.Abstractions;
+﻿using Alidu.MessageBus.Abstractions;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SampleDomainService.Application.Commands
 {

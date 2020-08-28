@@ -1,5 +1,4 @@
-﻿using Alidu.Core.Domain;
-using Alidu.Core.Domain.Interfaces;
+﻿using Alidu.Core.Domain.Interfaces;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;

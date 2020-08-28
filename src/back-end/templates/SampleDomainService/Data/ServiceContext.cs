@@ -1,13 +1,9 @@
 ﻿using Alidu.Common.Interfaces;
 using Alidu.MongoDB;
-using SampleDomainService.Application.Events;
-using SampleDomainService.Data.Schemas;
 using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using SampleDomainService.Application.Events;
+using SampleDomainService.Data.Schemas;
 
 namespace SampleDomainService.Data
 {

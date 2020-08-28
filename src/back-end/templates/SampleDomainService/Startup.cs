@@ -1,27 +1,22 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Alidu.Core.Domain.Interfaces;
+using Alidu.Core.ServiceHost;
 using Alidu.CQRS;
+using Alidu.CQRS.ExecptionHandler;
 using Alidu.MessageBus;
 using Alidu.MessageBus.RabbitMQ;
-using Alidu.Core.ServiceHost;
-using Alidu.CQRS.ExecptionHandler;
+using Alidu.MessageBus.RabbitMQ.Connection;
+using Alidu.MessageBus.Settings;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Alidu.Core.Domain.Interfaces;
-using AutoMapper;
-using SampleDomainService.Data;
-using Alidu.MessageBus.RabbitMQ.Connection;
-using Alidu.MessageBus.Settings;
-using SampleDomainService.Application.Events;
 using SampleDomainService.Application.Commands;
+using SampleDomainService.Application.Events;
+using SampleDomainService.Data;
+using System;
+using System.Collections.Generic;
 
 namespace SampleDomainService
 {
@@ -53,6 +48,7 @@ namespace SampleDomainService
         {
             services.AddTransient<CreateSampleCommandHandler>();
         }
+
         protected MessageTypeConfig GetMessageTypeConfig()
         {
             return new MessageTypeConfig

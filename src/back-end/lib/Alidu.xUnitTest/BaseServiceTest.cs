@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xunit;
+﻿using Xunit;
 
 namespace Alidu.xUnitTest
 {
@@ -9,6 +6,7 @@ namespace Alidu.xUnitTest
         where TTestStartup : class
     {
         protected TestServiceApplicationFactory<TTestStartup> _factory;
+
         public BaseServiceTest(TestServiceApplicationFactory<TTestStartup> factory)
         {
             _factory = factory;

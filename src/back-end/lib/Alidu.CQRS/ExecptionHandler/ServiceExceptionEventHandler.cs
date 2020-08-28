@@ -1,9 +1,5 @@
-﻿using Alidu.CQRS.Interfaces;
-using Alidu.MessageBus;
+﻿using Alidu.MessageBus;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 

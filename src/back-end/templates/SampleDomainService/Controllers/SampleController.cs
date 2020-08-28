@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using SampleDomainService.Application.Commands;
 using System.Threading;
 using System.Threading.Tasks;
-using SampleDomainService.Application.Commands;
-using MediatR;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 
 namespace SampleDomainService.Controllers
 {

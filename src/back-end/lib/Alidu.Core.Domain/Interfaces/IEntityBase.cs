@@ -1,7 +1,4 @@
-﻿using Alidu.Core.Domain.Interfaces;
-using System;
-
-namespace Alidu.Core.Domain.Interfaces
+﻿namespace Alidu.Core.Domain.Interfaces
 {
     public interface IEntityBase
     {
@@ -9,8 +6,9 @@ namespace Alidu.Core.Domain.Interfaces
         public string WorkingOrgId { get; }
 
         bool SoftDeleted { get; }
-        void SetWorkingOrgId(string workingOrgId);
-        void Delete();
 
+        void SetWorkingOrgId(string workingOrgId);
+
+        void Delete();
     }
 }

@@ -6,6 +6,7 @@
         string OrgId { get; }
         string WorkingOrgId { get; }
         string PositionId { get; }
+
         void SetClaims(string claims);
     }
 }

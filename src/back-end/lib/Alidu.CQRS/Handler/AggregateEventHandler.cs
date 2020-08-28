@@ -1,6 +1,5 @@
 ﻿using Alidu.Core.Domain.Interfaces;
 using Alidu.CQRS.Interfaces;
-using Alidu.MessageBus.Abstractions;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;

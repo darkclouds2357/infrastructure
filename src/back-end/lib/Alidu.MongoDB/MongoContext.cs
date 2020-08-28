@@ -1,5 +1,4 @@
 ﻿using Alidu.Common.Interfaces;
-using Alidu.Core.Domain;
 using Alidu.Core.Domain.Interfaces;
 using Microsoft.Extensions.Logging;
 using MongoDB.Bson;

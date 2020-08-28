@@ -2,8 +2,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Alidu.Core.Startup
 {
@@ -26,6 +24,7 @@ namespace Alidu.Core.Startup
             services.AddStartupTask<WarmupServicesStartupTask>().TryAddSingleton(services);
             return services;
         }
+
         private static T CreateStartUpTaskInstance<T, TOptions>(IServiceProvider serviceProvider, Action<IServiceProvider, TOptions> optionAction)
            where T : class, IStartupTask
            where TOptions : IWarmupOption

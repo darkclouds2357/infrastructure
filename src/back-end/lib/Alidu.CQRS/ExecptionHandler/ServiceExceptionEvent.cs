@@ -1,9 +1,5 @@
-﻿using Alidu.CQRS;
-using Alidu.MessageBus.Abstractions;
+﻿using Alidu.MessageBus.Abstractions;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Alidu.CQRS.ExecptionHandler
 {
