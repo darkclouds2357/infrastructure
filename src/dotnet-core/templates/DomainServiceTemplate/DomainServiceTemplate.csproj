@@ -11,5 +11,16 @@
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\lib\Alidu.Core.ServiceHost\Alidu.Core.ServiceHost.csproj" />
+    <ProjectReference Include="..\..\lib\Alidu.CQRS\Alidu.CQRS.csproj" />
+    <ProjectReference Include="..\..\lib\Alidu.MessageBus.RabbitMQ\Alidu.MessageBus.RabbitMQ.csproj" />
+    <ProjectReference Include="..\..\lib\Alidu.MongoDB\Alidu.MongoDB.csproj" />
+  </ItemGroup>
+
 
 </Project>

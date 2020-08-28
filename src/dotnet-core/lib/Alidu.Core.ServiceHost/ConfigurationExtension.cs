@@ -13,7 +13,7 @@ namespace Alidu.Core.ServiceHost
 {
     public static class ConfigurationExtension
     {
-        public static void UserServiceConfigure(this IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider, IConfiguration configuration, params object[] middlewares)
+        public static void UserServiceConfigure(this IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider, IConfiguration configuration, params Type[] middlewareTypes)
         {
             if (env.IsDevelopment())
             {
@@ -28,10 +28,10 @@ namespace Alidu.Core.ServiceHost
             app.UseCorsz();
             app.UseSwaggerz(provider, configuration);
 
-            if (middlewares?.Any() ?? false)
-                foreach (var middleware in middlewares)
+            if (middlewareTypes?.Any() ?? false)
+                foreach (var middlewareType in middlewareTypes)
                 {
-                    app.UseMiddleware(middleware.GetType());
+                    app.UseMiddleware(middlewareType);
                 }
 
             app.UseAuthorization();
