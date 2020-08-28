@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DomainServiceTemplate.Application.Commands
+namespace SampleDomainService.Application.Commands
 {
     public class CreateSampleCommand : BaseMessage, IRequest
     {

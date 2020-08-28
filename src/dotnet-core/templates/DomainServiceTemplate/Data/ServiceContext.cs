@@ -1,7 +1,7 @@
 ﻿using Alidu.Common.Interfaces;
 using Alidu.MongoDB;
-using DomainServiceTemplate.Application.Events;
-using DomainServiceTemplate.Data.Schemas;
+using SampleDomainService.Application.Events;
+using SampleDomainService.Data.Schemas;
 using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
 using System;
@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DomainServiceTemplate.Data
+namespace SampleDomainService.Data
 {
     public class ServiceContext : MongoContext
     {

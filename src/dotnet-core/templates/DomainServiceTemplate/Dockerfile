@@ -7,16 +7,16 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["templates/DomainServiceTemplate/DomainServiceTemplate.csproj", "templates/DomainServiceTemplate/"]
-RUN dotnet restore "templates/DomainServiceTemplate/DomainServiceTemplate.csproj"
+COPY ["templates/SampleDomainService/SampleDomainService.csproj", "templates/SampleDomainService/"]
+RUN dotnet restore "templates/SampleDomainService/SampleDomainService.csproj"
 COPY . .
-WORKDIR "/src/templates/DomainServiceTemplate"
-RUN dotnet build "DomainServiceTemplate.csproj" -c Release -o /app/build
+WORKDIR "/src/templates/SampleDomainService"
+RUN dotnet build "SampleDomainService.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "DomainServiceTemplate.csproj" -c Release -o /app/publish
+RUN dotnet publish "SampleDomainService.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "DomainServiceTemplate.dll"]
+ENTRYPOINT ["dotnet", "SampleDomainService.dll"]

@@ -1,12 +1,12 @@
 ﻿using Alidu.Core.Domain.Interfaces;
-using DomainServiceTemplate.Models;
+using SampleDomainService.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DomainServiceTemplate.Data
+namespace SampleDomainService.Data
 {
     public interface ISampleRepository : IRepository<Sample>
     {

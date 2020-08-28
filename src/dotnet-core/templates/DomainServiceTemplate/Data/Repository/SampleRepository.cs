@@ -2,8 +2,8 @@
 using Alidu.CQRS.Interfaces;
 using Alidu.MongoDB;
 using AutoMapper;
-using DomainServiceTemplate.Data.Schemas;
-using DomainServiceTemplate.Models;
+using SampleDomainService.Data.Schemas;
+using SampleDomainService.Models;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DomainServiceTemplate.Data.Repository
+namespace SampleDomainService.Data.Repository
 {
     public class SampleRepository : ISampleRepository
     {

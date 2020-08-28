@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using DomainServiceTemplate.Application.Commands;
+using SampleDomainService.Application.Commands;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DomainServiceTemplate.Controllers
+namespace SampleDomainService.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

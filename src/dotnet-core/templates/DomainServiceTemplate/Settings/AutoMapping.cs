@@ -1,12 +1,12 @@
 ﻿using Alidu.CQRS;
 using AutoMapper;
-using DomainServiceTemplate.Data.Schemas;
+using SampleDomainService.Data.Schemas;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DomainServiceTemplate.Settings
+namespace SampleDomainService.Settings
 {
     public class AutoMapping : Profile
     {

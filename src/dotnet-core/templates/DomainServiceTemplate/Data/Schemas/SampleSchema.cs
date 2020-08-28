@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DomainServiceTemplate.Data.Schemas
+namespace SampleDomainService.Data.Schemas
 {
     public class SampleSchema : IEntityBase, ITrackable
     {

@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "DomainServiceTemplate": {
+    "SampleDomainService": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "weatherforecast",

@@ -3,7 +3,7 @@ using Alidu.CQRS;
 using Alidu.CQRS.Interfaces;
 using Alidu.MongoDB;
 using AutoMapper;
-using DomainServiceTemplate.Data.Schemas;
+using SampleDomainService.Data.Schemas;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
@@ -12,7 +12,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DomainServiceTemplate.Data
+namespace SampleDomainService.Data
 {
     public class EventStoreProvider : IEventStoreProvider
     {

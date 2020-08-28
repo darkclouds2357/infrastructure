@@ -1,14 +1,14 @@
 ﻿using Alidu.Core.Domain;
 using Alidu.Core.Domain.Interfaces;
 using Alidu.CQRS;
-using DomainServiceTemplate.Application.Commands;
-using DomainServiceTemplate.Application.Events;
+using SampleDomainService.Application.Commands;
+using SampleDomainService.Application.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DomainServiceTemplate.Models
+namespace SampleDomainService.Models
 {
     public class Sample : AggregateRoot, IEntityBase, ITrackable
     {

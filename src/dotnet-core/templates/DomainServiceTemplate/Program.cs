@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Alidu.Core.ServiceHost;
-using DomainServiceTemplate.Data;
+using SampleDomainService.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace DomainServiceTemplate
+namespace SampleDomainService
 {
     public class Program
     {

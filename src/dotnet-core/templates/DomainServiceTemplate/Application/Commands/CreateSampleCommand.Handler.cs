@@ -2,8 +2,8 @@
 using Alidu.CQRS.Handler;
 using Alidu.CQRS;
 using Alidu.CQRS.Interfaces;
-using DomainServiceTemplate.Data;
-using DomainServiceTemplate.Models;
+using SampleDomainService.Data;
+using SampleDomainService.Models;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DomainServiceTemplate.Application.Commands
+namespace SampleDomainService.Application.Commands
 {
     public class CreateSampleCommandHandler : MessageHandler<CreateSampleCommand>, IRequestHandler<CreateSampleCommand>
     {

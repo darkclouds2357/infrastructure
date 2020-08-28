@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DomainServiceTemplate.Data
+namespace SampleDomainService.Data
 {
     public class DbContextSeed
     {

@@ -17,10 +17,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Alidu.Core.Domain.Interfaces;
 using AutoMapper;
-using DomainServiceTemplate.Data;
+using SampleDomainService.Data;
 using Alidu.MessageBus.RabbitMQ.Connection;
 
-namespace DomainServiceTemplate
+namespace SampleDomainService
 {
     public class Startup
     {
