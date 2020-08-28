@@ -1,4 +1,6 @@
 ﻿using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Alidu.Core.Domain.Interfaces
 {
@@ -6,6 +8,8 @@ namespace Alidu.Core.Domain.Interfaces
     {
         IUnitOfWork UnitOfWork { get; }
 
-        IQueryable<T> Query();
+        //IQueryable<T> Query();
+
+        Task<T> GetByIdAsync(string id, CancellationToken cancellationToken = default);
     }
 }

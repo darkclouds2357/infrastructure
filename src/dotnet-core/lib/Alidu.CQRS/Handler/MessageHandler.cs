@@ -2,11 +2,15 @@
 using Alidu.CQRS.Interfaces;
 using Alidu.MessageBus.Abstractions;
 using Alidu.MessageBus.Interfaces;
+using MediatR;
+using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Alidu.CQRS.Handler
 {
-    public abstract class MessageHandler<TEvent> : IMessageHandler<TEvent> where TEvent : BaseMessage
+    public abstract class MessageHandler<TMessage> : IMessageHandler<TMessage>
+        where TMessage : BaseMessage
     {
         private readonly IAggregateEventService _aggregateEventService;
         private readonly IUnitOfWork _unitOfWork;
@@ -17,11 +21,13 @@ namespace Alidu.CQRS.Handler
             _unitOfWork = unitOfWork;
         }
 
-        public virtual async Task Handle(string correlationId, TEvent @event)
+        public virtual async Task Handle(string correlationId, TMessage message)
         {
             await _unitOfWork.ExecutionTransactionStrategy(async (transactionId, cancellationToken) =>
             {
-                await MessageHandle(correlationId, @event);
+                // TODO: store to request message to Message Store
+
+                await MessageHandle(correlationId, message);
             },
             afterCommitTransction: async (transactionId, cancellationToken) =>
             {
@@ -29,6 +35,6 @@ namespace Alidu.CQRS.Handler
             });
         }
 
-        public abstract Task MessageHandle(string correlationId, TEvent @event);
+        public abstract Task MessageHandle(string correlationId, TMessage message);
     }
 }

@@ -72,6 +72,15 @@ namespace Alidu.MongoDB
             });
         }
 
+        protected void RegisterClassMap<T>()
+        {
+            BsonClassMap.RegisterClassMap<T>(cm =>
+            {
+                cm.AutoMap();
+                cm.SetIgnoreExtraElements(true);
+            });
+        }
+
         protected void CreateCollection<T>(string name)
         {
             _entityName[typeof(T)] = name;

@@ -12,10 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\lib\Alidu.Core.ServiceHost\Alidu.Core.ServiceHost.csproj" />
     <ProjectReference Include="..\..\lib\Alidu.CQRS\Alidu.CQRS.csproj" />
     <ProjectReference Include="..\..\lib\Alidu.MessageBus.RabbitMQ\Alidu.MessageBus.RabbitMQ.csproj" />

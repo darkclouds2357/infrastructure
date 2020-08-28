@@ -18,21 +18,20 @@ namespace Alidu.Core.Domain
         public LinkedList<IAggregateEvent> AppliedEvents { get; private set; }
 
         public void SetId(string id) => Id = id;
-        public void AddEvent<TAggregateEvent>(TAggregateEvent eventItem, bool isApply = true) where TAggregateEvent : IAggregateEvent
+        public void AddEvent<TAggregateEvent>(TAggregateEvent @event, bool isFromHistory = false) where TAggregateEvent : IAggregateEvent
         {
-            _pendingEvents ??= new LinkedList<IAggregateEvent>();
-            _pendingEvents.AddLast(eventItem);
-            if (!isApply)
+            ApplyEvent(@event);
+            @event.SetAggregateVersion(Id, Version);
+            if (isFromHistory)
                 return;
-            ApplyEvent(eventItem);
+            _pendingEvents ??= new LinkedList<IAggregateEvent>();
+            _pendingEvents.AddLast(@event);
         }
 
         public void ApplyEvent<TAggregateEvent>(TAggregateEvent @event) where TAggregateEvent : IAggregateEvent
         {
             ((dynamic)this).Apply((dynamic)@event);
             Version++;
-
-            @event.SetAggregateVersion(Id, Version);
 
             AppliedEvents ??= new LinkedList<IAggregateEvent>();
             AppliedEvents.AddLast(@event);

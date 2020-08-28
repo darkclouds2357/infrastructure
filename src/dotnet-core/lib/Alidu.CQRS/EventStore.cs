@@ -1,4 +1,5 @@
 ﻿using Alidu.MessageBus.Abstractions;
+using Newtonsoft.Json;
 using System;
 using System.Data.SqlTypes;
 
@@ -32,6 +33,17 @@ namespace Alidu.CQRS
         public int TimesSent { get; private set; }
         public DateTime CreationTime { get; set; }
         public int Version { get; set; }
+
+        public T GetPayload<T>() where T : class
+        {
+            if (!(Payload is T result))
+            {
+                var payloadJson = JsonConvert.SerializeObject(Payload);
+                result = JsonConvert.DeserializeObject<T>(payloadJson);
+            }
+            return result;
+
+        }
 
         public void UpdateState(EventStateEnum status)
         {

@@ -9,15 +9,15 @@ namespace Alidu.CQRS
 {
     public static class MediatorExtension
     {
-        public static async Task DispatchPendingEventsAsync<TAggregateRoot>(this IMediator mediator, IEnumerable<TAggregateRoot> domains, CancellationToken cancellationToken = default) where TAggregateRoot : IAggregateRoot
+        public static async Task DispatchPendingEventsAsync<TAggregateRoot>(this IMediator mediator, IEnumerable<TAggregateRoot> aggregateRoots, CancellationToken cancellationToken = default) where TAggregateRoot : IAggregateRoot
         {
-            var domainEntities = domains.Where(x => x.PendingEvents != null && x.PendingEvents.Any());
+            var hasPendingEvents = aggregateRoots.Where(x => x.PendingEvents != null && x.PendingEvents.Any());
 
-            var @events = domainEntities
+            var @events = hasPendingEvents
                 .SelectMany(x => x.PendingEvents)
                 .ToList();
 
-            domainEntities.ToList()
+            hasPendingEvents.ToList()
                 .ForEach(entity => entity.ClearPendingEvents());
 
             var tasks = @events

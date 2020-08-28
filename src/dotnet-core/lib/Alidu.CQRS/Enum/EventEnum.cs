@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Alidu.CQRS.Enum
+namespace Alidu.CQRS
 {
     public class EventEnum
     {

@@ -1,4 +1,4 @@
-﻿using Alidu.CQRS.Enum;
+﻿using Alidu.CQRS;
 using Alidu.MessageBus.Abstractions;
 using MediatR;
 using System;
