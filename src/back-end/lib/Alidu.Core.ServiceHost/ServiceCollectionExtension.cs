@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
+using Prometheus;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -35,6 +36,8 @@ namespace Alidu.Core.ServiceHost
                 .AddNewtonsoftJson(options => { })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
+            services.AddHealthChecks()
+                .ForwardToPrometheus();
             return services;
         }
 
