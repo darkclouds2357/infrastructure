@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Alidu.Core.Domain.Interfaces;
+using SampleDomainService.Data;
+using SampleDomainService.Models;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 

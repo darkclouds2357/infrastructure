@@ -1,4 +1,13 @@
-﻿namespace SampleDomainServiceTest.Setup
+﻿using Alidu.Core.Domain.Interfaces;
+using Alidu.Core.ServiceHost;
+using Alidu.CQRS;
+using Alidu.MessageBus;
+using AutoMapper;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using SampleDomainService;
+
+namespace SampleDomainServiceTest.Setup
 {
     public class TestStartup : Startup
     {

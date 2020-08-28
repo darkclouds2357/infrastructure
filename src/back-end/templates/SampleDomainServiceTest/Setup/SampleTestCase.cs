@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Alidu.CQRS;
+using SampleDomainService.Models;
+using System.Collections.Generic;
 
 namespace SampleDomainServiceTest.Setup
 {

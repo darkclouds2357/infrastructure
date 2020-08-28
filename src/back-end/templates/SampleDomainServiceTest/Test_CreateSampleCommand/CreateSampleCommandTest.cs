@@ -1,4 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using Alidu.MessageBus;
+using Alidu.MessageBus.InMemory;
+using Alidu.MessageBus.Settings;
+using Alidu.xUnitTest;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using SampleDomainServiceTest.Setup;
 using System.IO;
 using System.Linq;

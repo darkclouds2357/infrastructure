@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Alidu.CQRS;
+using Alidu.CQRS.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
