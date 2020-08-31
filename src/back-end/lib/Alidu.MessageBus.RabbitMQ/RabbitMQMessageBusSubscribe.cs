@@ -138,7 +138,9 @@ namespace Alidu.MessageBus.RabbitMQ
             var exchange = eventArgs.Exchange;
             var routing = eventArgs.RoutingKey;
             var message = Encoding.UTF8.GetString(eventArgs.Body.ToArray());
-            var messageNames = GetMessageNamesFromExchange(exchange, routing, _channelConfig.QueueName);
+            using var scope = _serviceProvider.CreateScope();
+            var messageBusConfig = scope.ServiceProvider.GetRequiredService<IOptions<MessageBusConfig>>().Value;
+            var messageNames = GetMessageNamesFromExchange(scope, exchange, routing, _channelConfig.QueueName);
             try
             {
                 if (message.ToLowerInvariant().Contains("throw-fake-exception"))
@@ -148,8 +150,21 @@ namespace Alidu.MessageBus.RabbitMQ
                 var props = eventArgs.BasicProperties;
                 if (messageNames.Any())
                 {
-                    await ProcessMessagesAsync(messageNames, message, props);
-                    _consumerChannel.BasicAck(eventArgs.DeliveryTag, multiple: false);
+                    var listenerRoutes = messageBusConfig.ListenedMessageRoutes;
+                    var isManualAck = listenerRoutes.Where(m => messageNames.Contains(m.Key)).Any(m => m.Value.ManualAck);
+                    if (isManualAck)
+                        _consumerChannel.BasicAck(eventArgs.DeliveryTag, multiple: false);
+
+                    var tasks = new List<Task>();
+
+                    foreach (var messageName in messageNames)
+                    {
+                        tasks.Add(ProcessMessageAsync(messageName, message, props, scope));
+                    }
+                    await Task.WhenAll(tasks);
+
+                    if (!isManualAck)
+                        _consumerChannel.BasicAck(eventArgs.DeliveryTag, multiple: false);
                 }
                 else
                 {
@@ -166,23 +181,12 @@ namespace Alidu.MessageBus.RabbitMQ
             }
         }
 
-        private async Task ProcessMessagesAsync(string[] messageNames, string message, IBasicProperties properties)
-        {
-            var tasks = new List<Task>();
-            foreach (var messageName in messageNames)
-            {
-                tasks.Add(ProcessMessageAsync(messageName, message, properties));
-            }
-            await Task.WhenAll(tasks);
-        }
-
-        private async Task ProcessMessageAsync(string messageName, string message, IBasicProperties properties)
+        private async Task ProcessMessageAsync(string messageName, string message, IBasicProperties properties, IServiceScope scope)
         {
             _logger.LogTrace("Processing RabbitMQ message name: {MessageName}", messageName);
 
             if (_subsManager.HasSubscriptionsForMessage(messageName))
             {
-                using var scope = _serviceProvider.CreateScope();
                 var subscriptions = _subsManager.GetHandlersForMessage(messageName);
                 var requestHeader = scope.ServiceProvider.GetRequiredService<IRequestHeader>();
                 if (properties.Headers.ContainsKey(TraefikDefault.Claims))
@@ -300,9 +304,8 @@ namespace Alidu.MessageBus.RabbitMQ
                               routingKey: _channelConfig.RoutingKey);
         }
 
-        public string[] GetMessageNamesFromExchange(string exchange, string routing, string queueName)
+        public string[] GetMessageNamesFromExchange(IServiceScope scope, string exchange, string routing, string queueName)
         {
-            using var scope = _serviceProvider.CreateScope();
             var rabbitMQConfig = scope.ServiceProvider.GetRequiredService<IOptions<RabbitMQConfig>>().Value;
             var messageBusConfig = scope.ServiceProvider.GetRequiredService<IOptions<MessageBusConfig>>().Value;
 
