@@ -139,8 +139,14 @@ namespace Alidu.MessageBus.RabbitMQ
             var routing = eventArgs.RoutingKey;
             var message = Encoding.UTF8.GetString(eventArgs.Body.ToArray());
             using var scope = _serviceProvider.CreateScope();
-            var messageBusConfig = scope.ServiceProvider.GetRequiredService<IOptions<MessageBusConfig>>().Value;
+            var rabbitMQConfig = scope.ServiceProvider.GetRequiredService<IOptions<RabbitMQConfig>>().Value;
             var messageNames = GetMessageNamesFromExchange(scope, exchange, routing, _channelConfig.QueueName);
+
+            var channels = rabbitMQConfig.ListenerChannels.Where(c => c.Value.Exchange == exchange && c.Value.IsRoutingMatch(routing));
+            if (!string.IsNullOrWhiteSpace(_channelConfig.QueueName))
+                channels = channels.Where(c => c.Value.QueueName == _channelConfig.QueueName);
+            var isManualAck = channels.Any(m => m.Value.ManualAck);
+
             try
             {
                 if (message.ToLowerInvariant().Contains("throw-fake-exception"))
@@ -149,10 +155,8 @@ namespace Alidu.MessageBus.RabbitMQ
                 }
                 var props = eventArgs.BasicProperties;
                 if (messageNames.Any())
-                {
-                    var listenerRoutes = messageBusConfig.ListenedMessageRoutes;
-                    var isManualAck = listenerRoutes.Where(m => messageNames.Contains(m.Key)).Any(m => m.Value.ManualAck);
-                    if (isManualAck)
+                {                    
+                    if (!isManualAck)
                         _consumerChannel.BasicAck(eventArgs.DeliveryTag, multiple: false);
 
                     var tasks = new List<Task>();
@@ -163,7 +167,7 @@ namespace Alidu.MessageBus.RabbitMQ
                     }
                     await Task.WhenAll(tasks);
 
-                    if (!isManualAck)
+                    if (isManualAck)
                         _consumerChannel.BasicAck(eventArgs.DeliveryTag, multiple: false);
                 }
                 else

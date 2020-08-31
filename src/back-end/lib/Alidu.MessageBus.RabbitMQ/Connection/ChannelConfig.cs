@@ -18,7 +18,7 @@ namespace Alidu.MessageBus.RabbitMQ.Connection
         public Dictionary<string, string> Headers { get; set; }
         public Dictionary<string, object> ExchangeArgs { get; set; }
         public Dictionary<string, object> QueueArgs { get; set; }
-
+        public bool ManualAck { get; set; } = true;
         public string DeadLetterExchange { get; set; }
         public string DeadLetterKey { get; set; }
 
